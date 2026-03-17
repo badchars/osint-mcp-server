@@ -568,48 +568,6 @@ SHODAN_API_KEY=your-key npx osint-mcp-server --tool shodan_host '{"ip":"1.1.1.1"
 
 ---
 
-## Architecture
-
-```
-src/
-├── index.ts                    Entry point, env config, MCP stdio
-├── types/
-│   └── index.ts                ToolDef, ToolContext, ToolResult
-├── protocol/
-│   ├── tools.ts                37 tool definitions (Zod schemas)
-│   └── mcp-server.ts           MCP server + stdio transport
-├── dns/
-│   └── index.ts                6 functions — lookup, reverse, email, SPF chain, SRV, wildcard
-├── whois/
-│   └── index.ts                2 functions — domain RDAP, IP RDAP
-├── crtsh/
-│   └── index.ts                CT log search with dedup + caching
-├── shodan/
-│   └── index.ts                Host, search, DNS resolve, exploits
-├── virustotal/
-│   └── index.ts                Domain, IP, subdomains, URL scan
-├── securitytrails/
-│   └── index.ts                Subdomains, DNS history, WHOIS
-├── censys/
-│   └── index.ts                Host search, host details, certificates
-├── geoip/
-│   └── index.ts                Single + batch IP geolocation
-├── bgp/
-│   └── index.ts                ASN, IP prefix, prefix details
-├── wayback/
-│   └── index.ts                URL search + snapshot history
-├── hackertarget/
-│   └── index.ts                Host search, reverse IP, ASN
-├── m365/
-│   └── index.ts                Tenant discovery, user realm/federation
-├── meta/
-│   ├── sources.ts              Source availability check
-│   └── recon.ts                Combined free-source domain recon
-└── utils/
-    ├── rate-limiter.ts          Queue-based rate limiter
-    ├── cache.ts                 Generic TTL cache
-    └── require-key.ts           API key validation helper
-```
 
 **Design decisions:**
 
