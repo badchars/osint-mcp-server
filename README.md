@@ -62,6 +62,10 @@
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/badchars/osint-mcp-server/main/.github/demo.gif" alt="osint-mcp-server demo" width="800">
+</p>
+
 ---
 
 ## The Problem
