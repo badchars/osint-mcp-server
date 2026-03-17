@@ -1,5 +1,5 @@
 name: 'OSINT MCP Server'
-description: 'Run 37 OSINT reconnaissance tools in your CI/CD pipeline — DNS, WHOIS, Shodan, VirusTotal, Censys, crt.sh, BGP, Wayback Machine, and more'
+description: '37 OSINT tools for CI/CD — DNS, WHOIS, Shodan, VirusTotal, Censys, crt.sh, BGP, Wayback & more'
 author: 'Orhan Yildirim'
 
 branding:
