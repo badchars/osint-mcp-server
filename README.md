@@ -36,7 +36,7 @@
 <h3 align="center">OSINT & reconnaissance intelligence for AI agents.</h3>
 
 <p align="center">
-  Shodan, VirusTotal, Censys, SecurityTrails, DNS, WHOIS, BGP, Wayback Machine &mdash; unified into a single MCP server.<br>
+  Shodan, VirusTotal, Censys, SecurityTrails, Xquik, DNS, WHOIS, BGP, Wayback Machine &mdash; unified into a single MCP server.<br>
   Your AI agent gets <b>full-spectrum OSINT on demand</b>, not 12 browser tabs and manual correlation.
 </p>
 
@@ -47,8 +47,8 @@
   <a href="#how-its-different">How It's Different</a> &bull;
   <a href="#quick-start">Quick Start</a> &bull;
   <a href="#what-the-ai-can-do">What The AI Can Do</a> &bull;
-  <a href="#tools-reference-37-tools">Tools (37)</a> &bull;
-  <a href="#data-sources-12">Data Sources</a> &bull;
+  <a href="#tools-reference-40-tools">Tools (40)</a> &bull;
+  <a href="#data-sources-13">Data Sources</a> &bull;
   <a href="#architecture">Architecture</a> &bull;
   <a href="CHANGELOG.md">Changelog</a> &bull;
   <a href="CONTRIBUTING.md">Contributing</a>
@@ -59,8 +59,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Tools">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Sources">
+  <img src="https://img.shields.io/badge/tools-40-06b6d4" alt="40 Tools">
+  <img src="https://img.shields.io/badge/sources-13-0ea5e9" alt="13 Sources">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
@@ -89,7 +89,7 @@ Traditional OSINT workflow:
   Total: 45+ minutes per target, most of it switching contexts
 ```
 
-**osint-mcp-server** gives your AI agent 37 tools across 12 data sources via the [Model Context Protocol](https://modelcontextprotocol.io). The agent queries all sources in parallel, correlates data, identifies risks, and presents a unified intelligence picture &mdash; in a single conversation.
+**osint-mcp-server** gives your AI agent 40 tools across 13 data sources via the [Model Context Protocol](https://modelcontextprotocol.io). The agent queries all sources in parallel, correlates data, identifies risks, and presents a unified intelligence picture &mdash; in a single conversation.
 
 ```
 With osint-mcp-server:
@@ -156,7 +156,7 @@ Existing OSINT tools give you raw data one source at a time. osint-mcp-server gi
 <tr>
 <td><b>API keys</b></td>
 <td>Required for almost everything</td>
-<td>21 tools work free, 16 more with optional API keys</td>
+<td>21 tools work free, 19 more with optional API keys</td>
 </tr>
 <tr>
 <td><b>Setup</b></td>
@@ -195,6 +195,7 @@ export VT_API_KEY=your-key               # Enables 4 VirusTotal tools
 export ST_API_KEY=your-key               # Enables 3 SecurityTrails tools
 export CENSYS_API_ID=your-id             # Enables 3 Censys tools
 export CENSYS_API_SECRET=your-secret     # Required with CENSYS_API_ID
+export XQUIK_API_KEY=your-key            # Enables 3 Xquik tools
 ```
 
 All premium API keys are optional. Without them, you still get 21 tools covering DNS, WHOIS, crt.sh, GeoIP, BGP, Wayback Machine, HackerTarget, and Microsoft 365 tenant discovery.
@@ -347,7 +348,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## Tools Reference (37 tools)
+## Tools Reference (40 tools)
 
 <details open>
 <summary><b>DNS (6) &mdash; No API key</b></summary>
@@ -429,6 +430,17 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 </details>
 
 <details>
+<summary><b>Xquik (3) &mdash; Requires XQUIK_API_KEY</b></summary>
+
+| Tool | Description |
+|------|-------------|
+| `xquik_tweet` | Look up an X tweet by ID with text, author, metrics, and media |
+| `xquik_search_tweets` | Search X tweets by keyword, hashtag, account query, tweet ID, or status URL |
+| `xquik_user` | Look up an X user profile by username or user ID |
+
+</details>
+
+<details>
 <summary><b>GeoIP (2) &mdash; No API key</b></summary>
 
 | Tool | Description |
@@ -494,7 +506,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 
 ## GitHub Actions
 
-Use any of the 37 tools directly in your CI/CD pipeline:
+Use any of the 40 tools directly in your CI/CD pipeline:
 
 ```yaml
 # .github/workflows/security.yml
@@ -555,7 +567,7 @@ SHODAN_API_KEY=your-key npx osint-mcp-server --tool shodan_host '{"ip":"1.1.1.1"
 
 ---
 
-## Data Sources (12)
+## Data Sources (13)
 
 | Source | Auth | Rate Limit | What it provides |
 |--------|------|-----------|-----------------|
@@ -571,13 +583,14 @@ SHODAN_API_KEY=your-key npx osint-mcp-server --tool shodan_host '{"ip":"1.1.1.1"
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 req/min | Domain/IP/URL reputation, malware detection |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 req/s | DNS history, subdomain enumeration, enhanced WHOIS |
 | [Censys](https://censys.io/) | `CENSYS_API_ID` | 1 req/s | Host search, certificate transparency, service discovery |
+| [Xquik](https://xquik.com) | `XQUIK_API_KEY` | Account plan limits | X tweet search, tweet lookup, and user lookup |
 
 ---
 
 
 **Design decisions:**
 
-- **12 providers, 1 server** &mdash; Every OSINT source is an independent module. The agent picks which tools to use based on the query.
+- **13 providers, 1 server** &mdash; Every OSINT source is an independent module. The agent picks which tools to use based on the query.
 - **21 free tools** &mdash; DNS, WHOIS, crt.sh, BGP, GeoIP, Wayback, HackerTarget, and M365 work without any API keys. Premium sources are additive.
 - **Parallel queries** &mdash; `osint_domain_recon` calls 8 sources via `Promise.allSettled`. If one source times out, the rest still return data.
 - **Per-provider rate limiters** &mdash; Each data source has its own `RateLimiter` instance calibrated to that API's limits. No shared bottleneck.
@@ -607,9 +620,11 @@ SHODAN_API_KEY=your-key npx osint-mcp-server --tool shodan_host '{"ip":"1.1.1.1"
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | Cloud security (AWS/Azure/GCP) | 38 tools, 60+ checks |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | GitHub security posture | 39 tools, 45 checks |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | Vulnerability intelligence | 23 tools, 5 sources |
-| **osint-mcp-server** | **OSINT & reconnaissance** | **37 tools, 12 sources** |
+| **osint-mcp-server** | **OSINT & reconnaissance** | **40 tools, 13 sources** |
 
 ---
+
+Xquik is an independent third-party service. Not affiliated with X Corp. "Twitter" and "X" are trademarks of X Corp.
 
 <p align="center">
 <b>For authorized security testing and assessment only.</b><br>

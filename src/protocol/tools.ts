@@ -17,6 +17,7 @@ import { bgpAsn, bgpIp, bgpPrefix } from "../bgp/index.js";
 import { waybackUrls, waybackSnapshots } from "../wayback/index.js";
 import { hackertargetHostsearch, hackertargetReverseIp, hackertargetAslookup } from "../hackertarget/index.js";
 import { m365Tenant, m365UserRealm } from "../m365/index.js";
+import { xquikSearchTweets, xquikTweet, xquikUser } from "../xquik/index.js";
 import { checkSources } from "../meta/sources.js";
 import { domainRecon } from "../meta/recon.js";
 
@@ -315,6 +316,55 @@ const censysCertificatesTool: ToolDef = {
 };
 
 // ═══════════════════════════════════════════════════════════════
+// Xquik (3 tools) - requires XQUIK_API_KEY
+// ═══════════════════════════════════════════════════════════════
+
+const xquikTweetTool: ToolDef = {
+  name: "xquik_tweet",
+  description: "Look up an X tweet by ID with text, author, metrics, and media. Requires XQUIK_API_KEY.",
+  schema: {
+    tweet_id: z.string().describe("Tweet ID to look up"),
+  },
+  execute: async (args, ctx) => {
+    const key = requireApiKey(ctx.config.xquikApiKey, "Xquik", "XQUIK_API_KEY");
+    return json(await xquikTweet(args.tweet_id as string, key));
+  },
+};
+
+const xquikSearchTweetsTool: ToolDef = {
+  name: "xquik_search_tweets",
+  description: "Search X tweets by keyword, hashtag, account query, tweet ID, or status URL. Requires XQUIK_API_KEY.",
+  schema: {
+    query: z.string().describe("Search query such as keywords, hashtag, from:user, tweet ID, or status URL"),
+    limit: z.number().optional().describe("Maximum tweets to return"),
+    query_type: z.enum(["Latest", "Top"]).optional().describe("Sort order"),
+    cursor: z.string().optional().describe("Pagination cursor from a previous response"),
+  },
+  execute: async (args, ctx) => {
+    const key = requireApiKey(ctx.config.xquikApiKey, "Xquik", "XQUIK_API_KEY");
+    return json(await xquikSearchTweets(
+      args.query as string,
+      key,
+      args.limit as number | undefined,
+      args.query_type as string | undefined,
+      args.cursor as string | undefined,
+    ));
+  },
+};
+
+const xquikUserTool: ToolDef = {
+  name: "xquik_user",
+  description: "Look up an X user profile by username or user ID. Requires XQUIK_API_KEY.",
+  schema: {
+    user: z.string().describe("X username without @ or numeric user ID"),
+  },
+  execute: async (args, ctx) => {
+    const key = requireApiKey(ctx.config.xquikApiKey, "Xquik", "XQUIK_API_KEY");
+    return json(await xquikUser(args.user as string, key));
+  },
+};
+
+// ═══════════════════════════════════════════════════════════════
 // GeoIP (2 tools) — ip-api.com free tier
 // ═══════════════════════════════════════════════════════════════
 
@@ -509,6 +559,10 @@ export const allTools: ToolDef[] = [
   censysHostsTool,
   censysHostDetailsTool,
   censysCertificatesTool,
+  // Xquik (3)
+  xquikTweetTool,
+  xquikSearchTweetsTool,
+  xquikUserTool,
   // GeoIP (2)
   geoipLookupTool,
   geoipBatchTool,

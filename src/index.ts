@@ -13,6 +13,7 @@ function buildToolContext(): ToolContext {
       stApiKey: process.env.ST_API_KEY,
       censysApiId: process.env.CENSYS_API_ID,
       censysApiSecret: process.env.CENSYS_API_SECRET,
+      xquikApiKey: process.env.XQUIK_API_KEY,
     },
   };
 }
@@ -37,6 +38,7 @@ const TOOL_CATEGORIES: { label: string; env: string | null; tools: string[] }[] 
   { label: "VirusTotal", env: "VT_API_KEY", tools: ["vt_domain", "vt_ip", "vt_subdomains", "vt_url"] },
   { label: "SecurityTrails", env: "ST_API_KEY", tools: ["st_subdomains", "st_dns_history", "st_whois"] },
   { label: "Censys", env: "CENSYS_API_ID + CENSYS_API_SECRET", tools: ["censys_hosts", "censys_host_details", "censys_certificates"] },
+  { label: "Xquik", env: "XQUIK_API_KEY", tools: ["xquik_tweet", "xquik_search_tweets", "xquik_user"] },
 ];
 
 // ─── CLI: Print Help ───
@@ -57,7 +59,7 @@ function printHelp(): void {
   console.log("");
   console.log("Options:");
   console.log("  --tool <name>     Run a specific tool by name");
-  console.log("  --list            List all 37 tools with descriptions");
+  console.log("  --list            List all 40 tools with descriptions");
   console.log("  --format <type>   Output format: json (default) or text");
   console.log("  --help, -h        Show this help message");
   console.log("");
@@ -67,6 +69,7 @@ function printHelp(): void {
   console.log("  ST_API_KEY           Enables 3 SecurityTrails tools");
   console.log("  CENSYS_API_ID        Enables 3 Censys tools");
   console.log("  CENSYS_API_SECRET    Required with CENSYS_API_ID");
+  console.log("  XQUIK_API_KEY        Enables 3 Xquik tools");
   console.log("");
   console.log("Without any flags, starts an MCP server on stdio (for AI agents).");
   console.log("21 tools work without API keys (DNS, WHOIS, crt.sh, BGP, GeoIP, Wayback, HackerTarget, M365).");
