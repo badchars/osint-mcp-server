@@ -6,14 +6,14 @@ import type { ToolContext } from "../types/index.js";
 function createMcpServer(ctx: ToolContext): McpServer {
   const server = new McpServer({
     name: "osint-mcp",
-    version: "0.1.0",
+    version: "0.2.0",
   });
 
   for (const tool of allTools) {
     server.tool(
       tool.name,
       tool.description,
-      tool.schema,
+      tool.schema as Record<string, never>,
       async (args: Record<string, unknown>) => {
         try {
           const result = await tool.execute(args, ctx);

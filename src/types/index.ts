@@ -5,7 +5,7 @@ import type { z } from "zod";
 export interface ToolDef {
   name: string;
   description: string;
-  schema: Record<string, z.ZodType>;
+  schema: z.ZodRawShape;
   execute: (args: Record<string, unknown>, ctx: ToolContext) => Promise<ToolResult>;
 }
 
@@ -16,6 +16,7 @@ export interface ToolContext {
     stApiKey?: string;
     censysApiId?: string;
     censysApiSecret?: string;
+    xquikApiKey?: string;
   };
 }
 

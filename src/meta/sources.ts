@@ -51,5 +51,13 @@ export async function checkSources(ctx: ToolContext): Promise<SourceInfo[]> {
       envVar: "CENSYS_API_ID + CENSYS_API_SECRET",
       toolCount: 3,
     },
+    {
+      name: "Xquik",
+      url: "xquik.com",
+      authRequired: true,
+      configured: !!ctx.config.xquikApiKey,
+      envVar: "XQUIK_API_KEY",
+      toolCount: 3,
+    },
   ];
 }
