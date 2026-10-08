@@ -4,3 +4,4 @@ bun.lock
 .env
 *.tgz
 test-*.ts
+.DS_Store
