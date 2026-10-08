@@ -193,8 +193,8 @@ bun install
 export SHODAN_API_KEY=your-key           # Enables 4 Shodan tools
 export VT_API_KEY=your-key               # Enables 4 VirusTotal tools
 export ST_API_KEY=your-key               # Enables 3 SecurityTrails tools
-export CENSYS_API_ID=your-id             # Enables 3 Censys tools
-export CENSYS_API_SECRET=your-secret     # Required with CENSYS_API_ID
+export CENSYS_API_TOKEN=your-token       # Enables 3 Censys tools (Platform API PAT)
+export CENSYS_ORG_ID=your-org-id         # Censys org ID (required on paid plans)
 ```
 
 All premium API keys are optional. Without them, you still get 21 tools covering DNS, WHOIS, crt.sh, GeoIP, BGP, Wayback Machine, HackerTarget, and Microsoft 365 tenant discovery.
@@ -229,8 +229,8 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
         "SHODAN_API_KEY": "optional",
         "VT_API_KEY": "optional",
         "ST_API_KEY": "optional",
-        "CENSYS_API_ID": "optional",
-        "CENSYS_API_SECRET": "optional"
+        "CENSYS_API_TOKEN": "optional",
+        "CENSYS_ORG_ID": "optional"
       }
     }
   }
@@ -418,7 +418,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 </details>
 
 <details>
-<summary><b>Censys (3) &mdash; Requires CENSYS_API_ID + CENSYS_API_SECRET</b></summary>
+<summary><b>Censys (3) &mdash; Requires CENSYS_API_TOKEN</b></summary>
 
 | Tool | Description |
 |------|-------------|
@@ -570,7 +570,7 @@ SHODAN_API_KEY=your-key npx osint-mcp-server --tool shodan_host '{"ip":"1.1.1.1"
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 1 req/s | Internet-wide port/service/banner scanning |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 req/min | Domain/IP/URL reputation, malware detection |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 req/s | DNS history, subdomain enumeration, enhanced WHOIS |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | 1 req/s | Host search, certificate transparency, service discovery |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | 1 req/s | Host search, certificate transparency, service discovery |
 
 ---
 

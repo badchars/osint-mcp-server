@@ -188,8 +188,8 @@ bun install
 export SHODAN_API_KEY=your-key           # 4 Shodan उपकरण सक्षम करता है
 export VT_API_KEY=your-key               # 4 VirusTotal उपकरण सक्षम करता है
 export ST_API_KEY=your-key               # 3 SecurityTrails उपकरण सक्षम करता है
-export CENSYS_API_ID=your-id             # 3 Censys उपकरण सक्षम करता है
-export CENSYS_API_SECRET=your-secret     # CENSYS_API_ID के साथ आवश्यक
+export CENSYS_API_TOKEN=your-token             # 3 Censys उपकरण सक्षम करता है
+export CENSYS_ORG_ID=your-org-id       # CENSYS_API_TOKEN के साथ आवश्यक
 ```
 
 सभी प्रीमियम API कुंजियाँ वैकल्पिक हैं। इनके बिना भी, आपको DNS, WHOIS, crt.sh, GeoIP, BGP, Wayback Machine, HackerTarget, और Microsoft 365 टेनेंट खोज को कवर करने वाले 21 उपकरण मिलते हैं।
@@ -224,8 +224,8 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
         "SHODAN_API_KEY": "optional",
         "VT_API_KEY": "optional",
         "ST_API_KEY": "optional",
-        "CENSYS_API_ID": "optional",
-        "CENSYS_API_SECRET": "optional"
+        "CENSYS_API_TOKEN": "optional",
+        "CENSYS_ORG_ID": "optional"
       }
     }
   }
@@ -413,7 +413,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 </details>
 
 <details>
-<summary><b>Censys (3) &mdash; CENSYS_API_ID + CENSYS_API_SECRET आवश्यक</b></summary>
+<summary><b>Censys (3) &mdash; CENSYS_API_TOKEN आवश्यक</b></summary>
 
 | उपकरण | विवरण |
 |--------|-------|
@@ -502,7 +502,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 1 अनुरोध/सेकंड | इंटरनेट-व्यापी पोर्ट/सेवा/बैनर स्कैनिंग |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 अनुरोध/मिनट | डोमेन/IP/URL प्रतिष्ठा, मैलवेयर पहचान |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 अनुरोध/सेकंड | DNS इतिहास, सबडोमेन गणना, उन्नत WHOIS |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | 1 अनुरोध/सेकंड | होस्ट खोज, प्रमाणपत्र पारदर्शिता, सेवा खोज |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | 1 अनुरोध/सेकंड | होस्ट खोज, प्रमाणपत्र पारदर्शिता, सेवा खोज |
 
 ---
 

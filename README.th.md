@@ -187,8 +187,8 @@ bun install
 export SHODAN_API_KEY=your-key           # เปิดใช้งาน 4 เครื่องมือ Shodan
 export VT_API_KEY=your-key               # เปิดใช้งาน 4 เครื่องมือ VirusTotal
 export ST_API_KEY=your-key               # เปิดใช้งาน 3 เครื่องมือ SecurityTrails
-export CENSYS_API_ID=your-id             # เปิดใช้งาน 3 เครื่องมือ Censys
-export CENSYS_API_SECRET=your-secret     # จำเป็นพร้อม CENSYS_API_ID
+export CENSYS_API_TOKEN=your-token             # เปิดใช้งาน 3 เครื่องมือ Censys
+export CENSYS_ORG_ID=your-org-id       # จำเป็นพร้อม CENSYS_API_TOKEN
 ```
 
 คีย์ API พรีเมียมทั้งหมดเป็นตัวเลือก หากไม่มี คุณยังได้เครื่องมือ 21 รายการที่ครอบคลุม DNS, WHOIS, crt.sh, GeoIP, BGP, Wayback Machine, HackerTarget และการค้นพบผู้เช่า Microsoft 365
@@ -223,8 +223,8 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
         "SHODAN_API_KEY": "optional",
         "VT_API_KEY": "optional",
         "ST_API_KEY": "optional",
-        "CENSYS_API_ID": "optional",
-        "CENSYS_API_SECRET": "optional"
+        "CENSYS_API_TOKEN": "optional",
+        "CENSYS_ORG_ID": "optional"
       }
     }
   }
@@ -412,7 +412,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 </details>
 
 <details>
-<summary><b>Censys (3) &mdash; ต้องใช้ CENSYS_API_ID + CENSYS_API_SECRET</b></summary>
+<summary><b>Censys (3) &mdash; ต้องใช้ CENSYS_API_TOKEN</b></summary>
 
 | เครื่องมือ | คำอธิบาย |
 |------|-------------|
@@ -501,7 +501,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 1 req/s | การสแกนพอร์ต/บริการ/แบนเนอร์ทั่วอินเทอร์เน็ต |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 req/min | ชื่อเสียงโดเมน/IP/URL, การตรวจจับมัลแวร์ |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 req/s | ประวัติ DNS, การระบุโดเมนย่อย, WHOIS ขั้นสูง |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | 1 req/s | การค้นหาโฮสต์, ความโปร่งใสของใบรับรอง, การค้นพบบริการ |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | 1 req/s | การค้นหาโฮสต์, ความโปร่งใสของใบรับรอง, การค้นพบบริการ |
 
 ---
 

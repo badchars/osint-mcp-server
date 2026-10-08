@@ -188,8 +188,8 @@ bun install
 export SHODAN_API_KEY=your-key           # 启用 4 个 Shodan 工具
 export VT_API_KEY=your-key               # 启用 4 个 VirusTotal 工具
 export ST_API_KEY=your-key               # 启用 3 个 SecurityTrails 工具
-export CENSYS_API_ID=your-id             # 启用 3 个 Censys 工具
-export CENSYS_API_SECRET=your-secret     # 需与 CENSYS_API_ID 配合使用
+export CENSYS_API_TOKEN=your-token             # 启用 3 个 Censys 工具
+export CENSYS_ORG_ID=your-org-id       # 需与 CENSYS_API_TOKEN 配合使用
 ```
 
 所有付费 API 密钥均为可选。不配置任何密钥，您仍可使用 21 个工具，覆盖 DNS、WHOIS、crt.sh、GeoIP、BGP、Wayback Machine、HackerTarget 和 Microsoft 365 租户发现。
@@ -224,8 +224,8 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
         "SHODAN_API_KEY": "optional",
         "VT_API_KEY": "optional",
         "ST_API_KEY": "optional",
-        "CENSYS_API_ID": "optional",
-        "CENSYS_API_SECRET": "optional"
+        "CENSYS_API_TOKEN": "optional",
+        "CENSYS_ORG_ID": "optional"
       }
     }
   }
@@ -413,7 +413,7 @@ JSON 配置格式相同。将命令指向 `npx osint-mcp-server` 或您的本地
 </details>
 
 <details>
-<summary><b>Censys（3 个）&mdash; 需要 CENSYS_API_ID + CENSYS_API_SECRET</b></summary>
+<summary><b>Censys（3 个）&mdash; 需要 CENSYS_API_TOKEN</b></summary>
 
 | 工具 | 描述 |
 |------|------|
@@ -502,7 +502,7 @@ JSON 配置格式相同。将命令指向 `npx osint-mcp-server` 或您的本地
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 1 次/秒 | 全网端口/服务/Banner 扫描 |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 次/分 | 域名/IP/URL 信誉、恶意软件检测 |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 次/秒 | DNS 历史、子域名枚举、增强版 WHOIS |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | 1 次/秒 | 主机搜索、证书透明度、服务发现 |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | 1 次/秒 | 主机搜索、证书透明度、服务发现 |
 
 ---
 

@@ -187,8 +187,8 @@ bun install
 export SHODAN_API_KEY=your-key           # Kích hoạt 4 công cụ Shodan
 export VT_API_KEY=your-key               # Kích hoạt 4 công cụ VirusTotal
 export ST_API_KEY=your-key               # Kích hoạt 3 công cụ SecurityTrails
-export CENSYS_API_ID=your-id             # Kích hoạt 3 công cụ Censys
-export CENSYS_API_SECRET=your-secret     # Bắt buộc với CENSYS_API_ID
+export CENSYS_API_TOKEN=your-token             # Kích hoạt 3 công cụ Censys
+export CENSYS_ORG_ID=your-org-id       # Bắt buộc với CENSYS_API_TOKEN
 ```
 
 Tất cả khóa API cao cấp đều tùy chọn. Không có chúng, bạn vẫn có 21 công cụ bao gồm DNS, WHOIS, crt.sh, GeoIP, BGP, Wayback Machine, HackerTarget và khám phá tenant Microsoft 365.
@@ -223,8 +223,8 @@ Thêm vào `~/Library/Application Support/Claude/claude_desktop_config.json`:
         "SHODAN_API_KEY": "optional",
         "VT_API_KEY": "optional",
         "ST_API_KEY": "optional",
-        "CENSYS_API_ID": "optional",
-        "CENSYS_API_SECRET": "optional"
+        "CENSYS_API_TOKEN": "optional",
+        "CENSYS_ORG_ID": "optional"
       }
     }
   }
@@ -412,7 +412,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 </details>
 
 <details>
-<summary><b>Censys (3) &mdash; Yêu cầu CENSYS_API_ID + CENSYS_API_SECRET</b></summary>
+<summary><b>Censys (3) &mdash; Yêu cầu CENSYS_API_TOKEN</b></summary>
 
 | Công cụ | Mô tả |
 |------|-------------|
@@ -501,7 +501,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 1 req/s | Quét cổng/dịch vụ/banner trên toàn Internet |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 req/phút | Danh tiếng tên miền/IP/URL, phát hiện malware |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 req/s | Lịch sử DNS, liệt kê tên miền phụ, WHOIS nâng cao |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | 1 req/s | Tìm kiếm máy chủ, minh bạch chứng chỉ, khám phá dịch vụ |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | 1 req/s | Tìm kiếm máy chủ, minh bạch chứng chỉ, khám phá dịch vụ |
 
 ---
 

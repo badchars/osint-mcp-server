@@ -45,10 +45,10 @@ export async function checkSources(ctx: ToolContext): Promise<SourceInfo[]> {
     },
     {
       name: "Censys",
-      url: "search.censys.io",
+      url: "platform.censys.io",
       authRequired: true,
-      configured: !!(ctx.config.censysApiId && ctx.config.censysApiSecret),
-      envVar: "CENSYS_API_ID + CENSYS_API_SECRET",
+      configured: !!ctx.config.censysApiToken,
+      envVar: "CENSYS_API_TOKEN (+ CENSYS_ORG_ID)",
       toolCount: 3,
     },
   ];
