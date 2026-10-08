@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { ToolDef } from "../types/index.js";
+import type { ToolDef, ToolContext } from "../types/index.js";
 import { json } from "../types/index.js";
 import { requireApiKey } from "../utils/require-key.js";
 
@@ -270,48 +270,45 @@ const stWhoisTool: ToolDef = {
 };
 
 // ═══════════════════════════════════════════════════════════════
-// Censys (3 tools) — requires CENSYS_API_ID + CENSYS_API_SECRET
+// Censys (3 tools) — Platform API v3, requires CENSYS_API_TOKEN (+ CENSYS_ORG_ID on paid plans)
 // ═══════════════════════════════════════════════════════════════
+
+function censysAuth(ctx: ToolContext): { token: string; orgId?: string } {
+  const token = requireApiKey(ctx.config.censysApiToken, "Censys", "CENSYS_API_TOKEN");
+  return { token, orgId: ctx.config.censysOrgId || undefined };
+}
 
 const censysHostsTool: ToolDef = {
   name: "censys_hosts",
-  description: "Search Censys for hosts matching a query. Returns IPs, services, ports, location, ASN. Requires CENSYS_API_ID + CENSYS_API_SECRET.",
+  description: "Search Censys (Platform API v3) for hosts matching a CenQL query. Returns IPs, services, ports, software, location, ASN. Requires CENSYS_API_TOKEN.",
   schema: {
-    query: z.string().describe("Censys search query"),
+    query: z.string().describe("CenQL query, e.g. 'host.services.port=22 and host.location.country=\"Poland\"' or 'host.services.software.product=\"nginx\"'"),
     per_page: z.number().optional().describe("Results per page (max 100, default: 25)"),
+    page_token: z.string().optional().describe("nextPageToken from a previous response to fetch the next page"),
   },
-  execute: async (args, ctx) => {
-    const id = requireApiKey(ctx.config.censysApiId, "Censys", "CENSYS_API_ID");
-    const secret = requireApiKey(ctx.config.censysApiSecret, "Censys", "CENSYS_API_SECRET");
-    return json(await censysHosts(args.query as string, { id, secret }, args.per_page as number | undefined));
-  },
+  execute: async (args, ctx) =>
+    json(await censysHosts(args.query as string, censysAuth(ctx), args.per_page as number | undefined, args.page_token as string | undefined)),
 };
 
 const censysHostDetailsTool: ToolDef = {
   name: "censys_host_details",
-  description: "Get detailed Censys host information for a single IP: all services, certificates, OS, location, ASN. Requires CENSYS_API_ID + CENSYS_API_SECRET.",
+  description: "Get detailed Censys host information for a single IP: all services, certificates, software, OS, location, ASN, DNS names. Requires CENSYS_API_TOKEN.",
   schema: {
     ip: z.string().describe("IP address to look up"),
   },
-  execute: async (args, ctx) => {
-    const id = requireApiKey(ctx.config.censysApiId, "Censys", "CENSYS_API_ID");
-    const secret = requireApiKey(ctx.config.censysApiSecret, "Censys", "CENSYS_API_SECRET");
-    return json(await censysHostDetails(args.ip as string, { id, secret }));
-  },
+  execute: async (args, ctx) => json(await censysHostDetails(args.ip as string, censysAuth(ctx))),
 };
 
 const censysCertificatesTool: ToolDef = {
   name: "censys_certificates",
-  description: "Search Censys certificate database. Returns certificate fingerprints, subjects, issuers, validity, and SANs. Requires CENSYS_API_ID + CENSYS_API_SECRET.",
+  description: "Search Censys (Platform API v3) certificates. Returns SHA-256 fingerprints, subjects, issuers, validity, SANs. A bare domain is searched in cert.names. Requires CENSYS_API_TOKEN.",
   schema: {
-    query: z.string().describe("Certificate search query (e.g. 'parsed.names: example.com')"),
+    query: z.string().describe("CenQL query (e.g. 'cert.names: \"example.com\"' or 'cert.parsed.issuer.organization: \"Let\'s Encrypt\"') or a bare domain"),
     per_page: z.number().optional().describe("Results per page (max 100, default: 25)"),
+    page_token: z.string().optional().describe("nextPageToken from a previous response to fetch the next page"),
   },
-  execute: async (args, ctx) => {
-    const id = requireApiKey(ctx.config.censysApiId, "Censys", "CENSYS_API_ID");
-    const secret = requireApiKey(ctx.config.censysApiSecret, "Censys", "CENSYS_API_SECRET");
-    return json(await censysCertificates(args.query as string, { id, secret }, args.per_page as number | undefined));
-  },
+  execute: async (args, ctx) =>
+    json(await censysCertificates(args.query as string, censysAuth(ctx), args.per_page as number | undefined, args.page_token as string | undefined)),
 };
 
 // ═══════════════════════════════════════════════════════════════

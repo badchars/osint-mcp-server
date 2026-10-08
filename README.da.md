@@ -187,8 +187,8 @@ bun install
 export SHODAN_API_KEY=your-key           # Aktiverer 4 Shodan-værktøjer
 export VT_API_KEY=your-key               # Aktiverer 4 VirusTotal-værktøjer
 export ST_API_KEY=your-key               # Aktiverer 3 SecurityTrails-værktøjer
-export CENSYS_API_ID=your-id             # Aktiverer 3 Censys-værktøjer
-export CENSYS_API_SECRET=your-secret     # Påkrævet sammen med CENSYS_API_ID
+export CENSYS_API_TOKEN=your-token             # Aktiverer 3 Censys-værktøjer
+export CENSYS_ORG_ID=your-org-id       # Påkrævet sammen med CENSYS_API_TOKEN
 ```
 
 Alle premium API-nøgler er valgfrie. Uden dem får du stadig 21 værktøjer, der dækker DNS, WHOIS, crt.sh, GeoIP, BGP, Wayback Machine, HackerTarget og Microsoft 365 tenant-opdagelse.
@@ -223,8 +223,8 @@ Tilføj til `~/Library/Application Support/Claude/claude_desktop_config.json`:
         "SHODAN_API_KEY": "optional",
         "VT_API_KEY": "optional",
         "ST_API_KEY": "optional",
-        "CENSYS_API_ID": "optional",
-        "CENSYS_API_SECRET": "optional"
+        "CENSYS_API_TOKEN": "optional",
+        "CENSYS_ORG_ID": "optional"
       }
     }
   }
@@ -412,7 +412,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 </details>
 
 <details>
-<summary><b>Censys (3) &mdash; Kræver CENSYS_API_ID + CENSYS_API_SECRET</b></summary>
+<summary><b>Censys (3) &mdash; Kræver CENSYS_API_TOKEN</b></summary>
 
 | Værktøj | Beskrivelse |
 |------|-------------|
@@ -501,7 +501,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 1 req/s | Internet-dækkende port/tjeneste/banner-scanning |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 req/min | Domæne/IP/URL-omdømme, malware-detektering |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 req/s | DNS-historik, underdomæneoplistning, udvidet WHOIS |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | 1 req/s | Værtssøgning, certifikattransparens, tjenesteopdagelse |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | 1 req/s | Værtssøgning, certifikattransparens, tjenesteopdagelse |
 
 ---
 

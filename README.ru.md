@@ -188,8 +188,8 @@ bun install
 export SHODAN_API_KEY=your-key           # Включает 4 инструмента Shodan
 export VT_API_KEY=your-key               # Включает 4 инструмента VirusTotal
 export ST_API_KEY=your-key               # Включает 3 инструмента SecurityTrails
-export CENSYS_API_ID=your-id             # Включает 3 инструмента Censys
-export CENSYS_API_SECRET=your-secret     # Требуется вместе с CENSYS_API_ID
+export CENSYS_API_TOKEN=your-token             # Включает 3 инструмента Censys
+export CENSYS_ORG_ID=your-org-id       # Требуется вместе с CENSYS_API_TOKEN
 ```
 
 Все премиум API-ключи опциональны. Без них вы получаете 21 инструмент, покрывающий DNS, WHOIS, crt.sh, GeoIP, BGP, Wayback Machine, HackerTarget и обнаружение тенантов Microsoft 365.
@@ -224,8 +224,8 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
         "SHODAN_API_KEY": "optional",
         "VT_API_KEY": "optional",
         "ST_API_KEY": "optional",
-        "CENSYS_API_ID": "optional",
-        "CENSYS_API_SECRET": "optional"
+        "CENSYS_API_TOKEN": "optional",
+        "CENSYS_ORG_ID": "optional"
       }
     }
   }
@@ -413,7 +413,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 </details>
 
 <details>
-<summary><b>Censys (3) &mdash; Требуется CENSYS_API_ID + CENSYS_API_SECRET</b></summary>
+<summary><b>Censys (3) &mdash; Требуется CENSYS_API_TOKEN</b></summary>
 
 | Инструмент | Описание |
 |------|-------------|
@@ -502,7 +502,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 1 запрос/с | Глобальное сканирование портов/сервисов/баннеров |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 запроса/мин | Репутация доменов/IP/URL, обнаружение вредоносного ПО |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 запрос/с | История DNS, перечисление поддоменов, расширенный WHOIS |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | 1 запрос/с | Поиск хостов, прозрачность сертификатов, обнаружение сервисов |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | 1 запрос/с | Поиск хостов, прозрачность сертификатов, обнаружение сервисов |
 
 ---
 

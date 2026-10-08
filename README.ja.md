@@ -188,8 +188,8 @@ bun install
 export SHODAN_API_KEY=your-key           # 4つのShodanツールを有効化
 export VT_API_KEY=your-key               # 4つのVirusTotalツールを有効化
 export ST_API_KEY=your-key               # 3つのSecurityTrailsツールを有効化
-export CENSYS_API_ID=your-id             # 3つのCensysツールを有効化
-export CENSYS_API_SECRET=your-secret     # CENSYS_API_IDと共に必要
+export CENSYS_API_TOKEN=your-token             # 3つのCensysツールを有効化
+export CENSYS_ORG_ID=your-org-id       # CENSYS_API_TOKENと共に必要
 ```
 
 すべてのプレミアムAPIキーはオプションです。それらがなくても、DNS、WHOIS、crt.sh、GeoIP、BGP、Wayback Machine、HackerTarget、Microsoft 365テナント検出をカバーする21個のツールが使用できます。
@@ -224,8 +224,8 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
         "SHODAN_API_KEY": "optional",
         "VT_API_KEY": "optional",
         "ST_API_KEY": "optional",
-        "CENSYS_API_ID": "optional",
-        "CENSYS_API_SECRET": "optional"
+        "CENSYS_API_TOKEN": "optional",
+        "CENSYS_ORG_ID": "optional"
       }
     }
   }
@@ -413,7 +413,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 </details>
 
 <details>
-<summary><b>Censys (3) — CENSYS_API_ID + CENSYS_API_SECRETが必要</b></summary>
+<summary><b>Censys (3) — CENSYS_API_TOKENが必要</b></summary>
 
 | ツール | 説明 |
 |------|-------------|
@@ -502,7 +502,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 1 req/s | インターネット全体のポート/サービス/バナースキャン |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 req/min | ドメイン/IP/URLの評判、マルウェア検出 |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 req/s | DNS履歴、サブドメイン列挙、拡張WHOIS |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | 1 req/s | ホスト検索、証明書の透明性、サービス検出 |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | 1 req/s | ホスト検索、証明書の透明性、サービス検出 |
 
 ---
 

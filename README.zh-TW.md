@@ -187,8 +187,8 @@ bun install
 export SHODAN_API_KEY=your-key           # 啟用 4 個 Shodan 工具
 export VT_API_KEY=your-key               # 啟用 4 個 VirusTotal 工具
 export ST_API_KEY=your-key               # 啟用 3 個 SecurityTrails 工具
-export CENSYS_API_ID=your-id             # 啟用 3 個 Censys 工具
-export CENSYS_API_SECRET=your-secret     # CENSYS_API_ID 必需
+export CENSYS_API_TOKEN=your-token             # 啟用 3 個 Censys 工具
+export CENSYS_ORG_ID=your-org-id       # CENSYS_API_TOKEN 必需
 ```
 
 所有進階 API 金鑰都是可選的。即使沒有它們,您仍可獲得 21 個工具,涵蓋 DNS、WHOIS、crt.sh、GeoIP、BGP、Wayback Machine、HackerTarget 和 Microsoft 365 租戶探索。
@@ -223,8 +223,8 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
         "SHODAN_API_KEY": "optional",
         "VT_API_KEY": "optional",
         "ST_API_KEY": "optional",
-        "CENSYS_API_ID": "optional",
-        "CENSYS_API_SECRET": "optional"
+        "CENSYS_API_TOKEN": "optional",
+        "CENSYS_ORG_ID": "optional"
       }
     }
   }
@@ -412,7 +412,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 </details>
 
 <details>
-<summary><b>Censys (3) &mdash; 需要 CENSYS_API_ID + CENSYS_API_SECRET</b></summary>
+<summary><b>Censys (3) &mdash; 需要 CENSYS_API_TOKEN</b></summary>
 
 | Tool | Description |
 |------|-------------|
@@ -501,7 +501,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 1 req/s | 全網際網路埠/服務/橫幅掃描 |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 req/min | 網域/IP/URL 信譽、惡意軟體偵測 |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 req/s | DNS 歷史、子網域枚舉、增強型 WHOIS |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | 1 req/s | 主機搜尋、憑證透明度、服務探索 |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | 1 req/s | 主機搜尋、憑證透明度、服務探索 |
 
 ---
 

@@ -14,8 +14,8 @@ export interface ToolContext {
     shodanApiKey?: string;
     vtApiKey?: string;
     stApiKey?: string;
-    censysApiId?: string;
-    censysApiSecret?: string;
+    censysApiToken?: string;
+    censysOrgId?: string;
   };
 }
 

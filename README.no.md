@@ -187,8 +187,8 @@ bun install
 export SHODAN_API_KEY=your-key           # Aktiverer 4 Shodan-verktøy
 export VT_API_KEY=your-key               # Aktiverer 4 VirusTotal-verktøy
 export ST_API_KEY=your-key               # Aktiverer 3 SecurityTrails-verktøy
-export CENSYS_API_ID=your-id             # Aktiverer 3 Censys-verktøy
-export CENSYS_API_SECRET=your-secret     # Påkrevd med CENSYS_API_ID
+export CENSYS_API_TOKEN=your-token             # Aktiverer 3 Censys-verktøy
+export CENSYS_ORG_ID=your-org-id       # Påkrevd med CENSYS_API_TOKEN
 ```
 
 Alle premium API-nøkler er valgfrie. Uten dem får du fortsatt 21 verktøy som dekker DNS, WHOIS, crt.sh, GeoIP, BGP, Wayback Machine, HackerTarget og Microsoft 365 tenant-oppdagelse.
@@ -223,8 +223,8 @@ Legg til i `~/Library/Application Support/Claude/claude_desktop_config.json`:
         "SHODAN_API_KEY": "optional",
         "VT_API_KEY": "optional",
         "ST_API_KEY": "optional",
-        "CENSYS_API_ID": "optional",
-        "CENSYS_API_SECRET": "optional"
+        "CENSYS_API_TOKEN": "optional",
+        "CENSYS_ORG_ID": "optional"
       }
     }
   }
@@ -412,7 +412,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 </details>
 
 <details>
-<summary><b>Censys (3) &mdash; Krever CENSYS_API_ID + CENSYS_API_SECRET</b></summary>
+<summary><b>Censys (3) &mdash; Krever CENSYS_API_TOKEN</b></summary>
 
 | Verktøy | Beskrivelse |
 |------|-------------|
@@ -501,7 +501,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 1 req/s | Internett-bred port/tjeneste/banner-skanning |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 req/min | Domene/IP/URL-omdømme, deteksjon av skadelig programvare |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 req/s | DNS-historikk, underdomene-opptelling, forbedret WHOIS |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | 1 req/s | Vertssøk, sertifikattransparens, tjenesteoppdagelse |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | 1 req/s | Vertssøk, sertifikattransparens, tjenesteoppdagelse |
 
 ---
 

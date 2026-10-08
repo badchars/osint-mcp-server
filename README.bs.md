@@ -187,8 +187,8 @@ bun install
 export SHODAN_API_KEY=your-key           # Omogućava 4 Shodan alata
 export VT_API_KEY=your-key               # Omogućava 4 VirusTotal alata
 export ST_API_KEY=your-key               # Omogućava 3 SecurityTrails alata
-export CENSYS_API_ID=your-id             # Omogućava 3 Censys alata
-export CENSYS_API_SECRET=your-secret     # Potrebno sa CENSYS_API_ID
+export CENSYS_API_TOKEN=your-token             # Omogućava 3 Censys alata
+export CENSYS_ORG_ID=your-org-id       # Potrebno sa CENSYS_API_TOKEN
 ```
 
 Svi premium API ključevi su opcioni. Bez njih, i dalje dobijate 21 alat koji pokrivaju DNS, WHOIS, crt.sh, GeoIP, BGP, Wayback Machine, HackerTarget i Microsoft 365 otkrivanje zakupaca.
@@ -223,8 +223,8 @@ Dodajte u `~/Library/Application Support/Claude/claude_desktop_config.json`:
         "SHODAN_API_KEY": "optional",
         "VT_API_KEY": "optional",
         "ST_API_KEY": "optional",
-        "CENSYS_API_ID": "optional",
-        "CENSYS_API_SECRET": "optional"
+        "CENSYS_API_TOKEN": "optional",
+        "CENSYS_ORG_ID": "optional"
       }
     }
   }
@@ -412,7 +412,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 </details>
 
 <details>
-<summary><b>Censys (3) &mdash; Potreban CENSYS_API_ID + CENSYS_API_SECRET</b></summary>
+<summary><b>Censys (3) &mdash; Potreban CENSYS_API_TOKEN</b></summary>
 
 | Alat | Opis |
 |------|------|
@@ -501,7 +501,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 1 zahtjev/s | Skeniranje port/servis/banner širom Interneta |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 zahtjev/min | Reputacija domena/IP/URL, detekcija malware-a |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 zahtjev/s | DNS historija, enumeracija poddomena, poboljšani WHOIS |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | 1 zahtjev/s | Pretraga hosta, transparentnost certifikata, otkrivanje servisa |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | 1 zahtjev/s | Pretraga hosta, transparentnost certifikata, otkrivanje servisa |
 
 ---
 

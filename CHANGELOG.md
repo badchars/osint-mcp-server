@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Changed
+- **Censys migrated to Platform API v3** (`api.platform.censys.io`). The legacy Search API v2 (`search.censys.io`) is being retired.
+  - Auth: `CENSYS_API_TOKEN` (Personal Access Token, Bearer) + optional `CENSYS_ORG_ID` (required on Starter/Search/Core plans).
+  - **Breaking:** `CENSYS_API_ID` / `CENSYS_API_SECRET` are no longer used.
+  - Queries use CenQL (`host.services.port=22`, `cert.names: "example.com"`); a bare domain passed to `censys_certificates` is searched in `cert.names`.
+  - `censys_hosts` / `censys_certificates` accept `page_token` and return `nextPageToken`; host results now include software, DNS names and labels.
+
 ## [0.2.0] - 2025-05-18
 
 ### Added

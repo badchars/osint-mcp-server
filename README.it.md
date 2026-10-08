@@ -187,8 +187,8 @@ bun install
 export SHODAN_API_KEY=your-key           # Abilita 4 strumenti Shodan
 export VT_API_KEY=your-key               # Abilita 4 strumenti VirusTotal
 export ST_API_KEY=your-key               # Abilita 3 strumenti SecurityTrails
-export CENSYS_API_ID=your-id             # Abilita 3 strumenti Censys
-export CENSYS_API_SECRET=your-secret     # Richiesto con CENSYS_API_ID
+export CENSYS_API_TOKEN=your-token             # Abilita 3 strumenti Censys
+export CENSYS_ORG_ID=your-org-id       # Richiesto con CENSYS_API_TOKEN
 ```
 
 Tutte le chiavi API premium sono opzionali. Senza di esse, ottieni comunque 21 strumenti che coprono DNS, WHOIS, crt.sh, GeoIP, BGP, Wayback Machine, HackerTarget e scoperta tenant Microsoft 365.
@@ -223,8 +223,8 @@ Aggiungi a `~/Library/Application Support/Claude/claude_desktop_config.json`:
         "SHODAN_API_KEY": "optional",
         "VT_API_KEY": "optional",
         "ST_API_KEY": "optional",
-        "CENSYS_API_ID": "optional",
-        "CENSYS_API_SECRET": "optional"
+        "CENSYS_API_TOKEN": "optional",
+        "CENSYS_ORG_ID": "optional"
       }
     }
   }
@@ -412,7 +412,7 @@ Agente: → wayback_urls {domain: "target.com", limit: 500}
 </details>
 
 <details>
-<summary><b>Censys (3) &mdash; Richiede CENSYS_API_ID + CENSYS_API_SECRET</b></summary>
+<summary><b>Censys (3) &mdash; Richiede CENSYS_API_TOKEN</b></summary>
 
 | Strumento | Descrizione |
 |------|-------------|
@@ -501,7 +501,7 @@ Agente: → wayback_urls {domain: "target.com", limit: 500}
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 1 req/s | Scansione porta/servizio/banner su Internet |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 req/min | Reputazione dominio/IP/URL, rilevamento malware |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 req/s | Storico DNS, enumerazione sottodomini, WHOIS migliorato |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | 1 req/s | Ricerca host, trasparenza certificati, scoperta servizi |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | 1 req/s | Ricerca host, trasparenza certificati, scoperta servizi |
 
 ---
 

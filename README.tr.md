@@ -189,8 +189,8 @@ bun install
 export SHODAN_API_KEY=your-key           # 4 Shodan aracını etkinleştirir
 export VT_API_KEY=your-key               # 4 VirusTotal aracını etkinleştirir
 export ST_API_KEY=your-key               # 3 SecurityTrails aracını etkinleştirir
-export CENSYS_API_ID=your-id             # 3 Censys aracını etkinleştirir
-export CENSYS_API_SECRET=your-secret     # CENSYS_API_ID ile birlikte gereklidir
+export CENSYS_API_TOKEN=your-token             # 3 Censys aracını etkinleştirir
+export CENSYS_ORG_ID=your-org-id       # CENSYS_API_TOKEN ile birlikte gereklidir
 ```
 
 Tüm premium API anahtarları opsiyoneldir. Bunlar olmadan bile DNS, WHOIS, crt.sh, GeoIP, BGP, Wayback Machine, HackerTarget ve Microsoft 365 kiracı keşfini kapsayan 21 araca sahip olursunuz.
@@ -225,8 +225,8 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
         "SHODAN_API_KEY": "optional",
         "VT_API_KEY": "optional",
         "ST_API_KEY": "optional",
-        "CENSYS_API_ID": "optional",
-        "CENSYS_API_SECRET": "optional"
+        "CENSYS_API_TOKEN": "optional",
+        "CENSYS_ORG_ID": "optional"
       }
     }
   }
@@ -414,7 +414,7 @@ Ajan: → wayback_urls {domain: "target.com", limit: 500}
 </details>
 
 <details>
-<summary><b>Censys (3) &mdash; CENSYS_API_ID + CENSYS_API_SECRET gerektirir</b></summary>
+<summary><b>Censys (3) &mdash; CENSYS_API_TOKEN gerektirir</b></summary>
 
 | Araç | Açıklama |
 |------|----------|
@@ -503,7 +503,7 @@ Ajan: → wayback_urls {domain: "target.com", limit: 500}
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 1 istek/sn | İnternet genelinde port/servis/banner taraması |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 istek/dk | Domain/IP/URL itibarı, zararlı yazılım tespiti |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 istek/sn | DNS geçmişi, alt alan adı keşfi, zenginleştirilmiş WHOIS |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | 1 istek/sn | Host araması, sertifika şeffaflığı, servis keşfi |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | 1 istek/sn | Host araması, sertifika şeffaflığı, servis keşfi |
 
 ---
 

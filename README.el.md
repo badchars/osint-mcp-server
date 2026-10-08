@@ -187,8 +187,8 @@ bun install
 export SHODAN_API_KEY=your-key           # Ενεργοποιεί 4 εργαλεία Shodan
 export VT_API_KEY=your-key               # Ενεργοποιεί 4 εργαλεία VirusTotal
 export ST_API_KEY=your-key               # Ενεργοποιεί 3 εργαλεία SecurityTrails
-export CENSYS_API_ID=your-id             # Ενεργοποιεί 3 εργαλεία Censys
-export CENSYS_API_SECRET=your-secret     # Απαιτείται με το CENSYS_API_ID
+export CENSYS_API_TOKEN=your-token             # Ενεργοποιεί 3 εργαλεία Censys
+export CENSYS_ORG_ID=your-org-id       # Απαιτείται με το CENSYS_API_TOKEN
 ```
 
 Όλα τα premium κλειδιά API είναι προαιρετικά. Χωρίς αυτά, εξακολουθείτε να έχετε 21 εργαλεία που καλύπτουν DNS, WHOIS, crt.sh, GeoIP, BGP, Wayback Machine, HackerTarget και ανακάλυψη tenant Microsoft 365.
@@ -223,8 +223,8 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
         "SHODAN_API_KEY": "optional",
         "VT_API_KEY": "optional",
         "ST_API_KEY": "optional",
-        "CENSYS_API_ID": "optional",
-        "CENSYS_API_SECRET": "optional"
+        "CENSYS_API_TOKEN": "optional",
+        "CENSYS_ORG_ID": "optional"
       }
     }
   }
@@ -412,7 +412,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 </details>
 
 <details>
-<summary><b>Censys (3) &mdash; Απαιτεί CENSYS_API_ID + CENSYS_API_SECRET</b></summary>
+<summary><b>Censys (3) &mdash; Απαιτεί CENSYS_API_TOKEN</b></summary>
 
 | Εργαλείο | Περιγραφή |
 |------|-------------|
@@ -501,7 +501,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 1 αίτημα/s | Σάρωση θύρας/υπηρεσίας/banner σε όλο το διαδίκτυο |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 αίτημα/λεπτό | Φήμη τομέα/IP/URL, ανίχνευση malware |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 αίτημα/s | Ιστορικό DNS, απαρίθμηση υποτομέων, βελτιωμένο WHOIS |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | 1 αίτημα/s | Αναζήτηση host, διαφάνεια πιστοποιητικών, ανακάλυψη υπηρεσιών |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | 1 αίτημα/s | Αναζήτηση host, διαφάνεια πιστοποιητικών, ανακάλυψη υπηρεσιών |
 
 ---
 

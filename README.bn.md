@@ -187,8 +187,8 @@ bun install
 export SHODAN_API_KEY=your-key           # ৪টি Shodan টুল সক্রিয় করে
 export VT_API_KEY=your-key               # ৪টি VirusTotal টুল সক্রিয় করে
 export ST_API_KEY=your-key               # ৩টি SecurityTrails টুল সক্রিয় করে
-export CENSYS_API_ID=your-id             # ৩টি Censys টুল সক্রিয় করে
-export CENSYS_API_SECRET=your-secret     # CENSYS_API_ID এর সাথে প্রয়োজনীয়
+export CENSYS_API_TOKEN=your-token             # ৩টি Censys টুল সক্রিয় করে
+export CENSYS_ORG_ID=your-org-id       # CENSYS_API_TOKEN এর সাথে প্রয়োজনীয়
 ```
 
 সমস্ত প্রিমিয়াম API কী ঐচ্ছিক। এগুলি ছাড়া, আপনি এখনও DNS, WHOIS, crt.sh, GeoIP, BGP, Wayback Machine, HackerTarget এবং Microsoft 365 টেন্যান্ট আবিষ্কার কভার করে ২১টি টুল পাবেন।
@@ -223,8 +223,8 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
         "SHODAN_API_KEY": "optional",
         "VT_API_KEY": "optional",
         "ST_API_KEY": "optional",
-        "CENSYS_API_ID": "optional",
-        "CENSYS_API_SECRET": "optional"
+        "CENSYS_API_TOKEN": "optional",
+        "CENSYS_ORG_ID": "optional"
       }
     }
   }
@@ -412,7 +412,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 </details>
 
 <details>
-<summary><b>Censys (৩) &mdash; CENSYS_API_ID + CENSYS_API_SECRET প্রয়োজন</b></summary>
+<summary><b>Censys (৩) &mdash; CENSYS_API_TOKEN প্রয়োজন</b></summary>
 
 | টুল | বর্ণনা |
 |------|-------------|
@@ -501,7 +501,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | ১ req/s | ইন্টারনেট-ব্যাপী পোর্ট/সার্ভিস/ব্যানার স্ক্যানিং |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | ৪ req/min | ডোমেইন/IP/URL রেপুটেশন, ম্যালওয়্যার সনাক্তকরণ |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | ১ req/s | DNS ইতিহাস, সাবডোমেইন গণনা, উন্নত WHOIS |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | ১ req/s | হোস্ট অনুসন্ধান, সার্টিফিকেট স্বচ্ছতা, সার্ভিস আবিষ্কার |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | ১ req/s | হোস্ট অনুসন্ধান, সার্টিফিকেট স্বচ্ছতা, সার্ভিস আবিষ্কার |
 
 ---
 

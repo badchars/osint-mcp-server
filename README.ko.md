@@ -188,8 +188,8 @@ bun install
 export SHODAN_API_KEY=your-key           # Shodan 도구 4개 활성화
 export VT_API_KEY=your-key               # VirusTotal 도구 4개 활성화
 export ST_API_KEY=your-key               # SecurityTrails 도구 3개 활성화
-export CENSYS_API_ID=your-id             # Censys 도구 3개 활성화
-export CENSYS_API_SECRET=your-secret     # CENSYS_API_ID와 함께 필요
+export CENSYS_API_TOKEN=your-token             # Censys 도구 3개 활성화
+export CENSYS_ORG_ID=your-org-id       # CENSYS_API_TOKEN와 함께 필요
 ```
 
 모든 프리미엄 API 키는 선택 사항입니다. 이것 없이도 DNS, WHOIS, crt.sh, GeoIP, BGP, Wayback Machine, HackerTarget 및 Microsoft 365 테넌트 검색을 다루는 21개 도구를 사용할 수 있습니다.
@@ -224,8 +224,8 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
         "SHODAN_API_KEY": "optional",
         "VT_API_KEY": "optional",
         "ST_API_KEY": "optional",
-        "CENSYS_API_ID": "optional",
-        "CENSYS_API_SECRET": "optional"
+        "CENSYS_API_TOKEN": "optional",
+        "CENSYS_ORG_ID": "optional"
       }
     }
   }
@@ -413,7 +413,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 </details>
 
 <details>
-<summary><b>Censys (3) &mdash; CENSYS_API_ID + CENSYS_API_SECRET 필요</b></summary>
+<summary><b>Censys (3) &mdash; CENSYS_API_TOKEN 필요</b></summary>
 
 | 도구 | 설명 |
 |------|-------------|
@@ -502,7 +502,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 초당 1회 요청 | 인터넷 전체 포트/서비스/배너 스캐닝 |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 분당 4회 요청 | 도메인/IP/URL 평판, 악성 코드 감지 |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 초당 1회 요청 | DNS 기록, 하위 도메인 열거, 향상된 WHOIS |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | 초당 1회 요청 | 호스트 검색, 인증서 투명성, 서비스 검색 |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | 초당 1회 요청 | 호스트 검색, 인증서 투명성, 서비스 검색 |
 
 ---
 

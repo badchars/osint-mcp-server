@@ -187,8 +187,8 @@ bun install
 export SHODAN_API_KEY=twoj-klucz           # Aktywuje 4 narzędzia Shodan
 export VT_API_KEY=twoj-klucz               # Aktywuje 4 narzędzia VirusTotal
 export ST_API_KEY=twoj-klucz               # Aktywuje 3 narzędzia SecurityTrails
-export CENSYS_API_ID=twoj-id               # Aktywuje 3 narzędzia Censys
-export CENSYS_API_SECRET=twoj-sekret       # Wymagane z CENSYS_API_ID
+export CENSYS_API_TOKEN=twoj-token       # Aktywuje 3 narzędzia Censys (Personal Access Token)
+export CENSYS_ORG_ID=twoje-org-id        # ID organizacji (wymagane w płatnych planach)
 ```
 
 Wszystkie klucze API premium są opcjonalne. Bez nich nadal masz 21 narzędzi obejmujących DNS, WHOIS, crt.sh, GeoIP, BGP, Wayback Machine, HackerTarget i wykrywanie dzierżawy Microsoft 365.
@@ -223,8 +223,8 @@ Dodaj do `~/Library/Application Support/Claude/claude_desktop_config.json`:
         "SHODAN_API_KEY": "opcjonalne",
         "VT_API_KEY": "opcjonalne",
         "ST_API_KEY": "opcjonalne",
-        "CENSYS_API_ID": "opcjonalne",
-        "CENSYS_API_SECRET": "opcjonalne"
+        "CENSYS_API_TOKEN": "opcjonalne",
+        "CENSYS_ORG_ID": "opcjonalne"
       }
     }
   }
@@ -412,7 +412,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 </details>
 
 <details>
-<summary><b>Censys (3) &mdash; Wymaga CENSYS_API_ID + CENSYS_API_SECRET</b></summary>
+<summary><b>Censys (3) &mdash; Wymaga CENSYS_API_TOKEN</b></summary>
 
 | Narzędzie | Opis |
 |------|-------------|
@@ -501,7 +501,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 1 zap/s | Skanowanie portów/usług/banerów w całym internecie |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 zap/min | Reputacja domeny/IP/URL, detekcja malware |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 zap/s | Historia DNS, wyliczanie subdomen, rozszerzony WHOIS |
-| [Censys](https://censys.io/) | `CENSYS_API_ID` | 1 zap/s | Wyszukiwanie hostów, przejrzystość certyfikatów, odkrywanie usług |
+| [Censys](https://platform.censys.io/) | `CENSYS_API_TOKEN` | 1 zap/s | Wyszukiwanie hostów, przejrzystość certyfikatów, odkrywanie usług |
 
 ---
 
