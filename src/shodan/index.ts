@@ -4,6 +4,13 @@ import { TTLCache } from "../utils/cache.js";
 const limiter = new RateLimiter(1000); // 1 req/s
 const cache = new TTLCache<any>(5 * 60 * 1000); // 5 min
 
+// Throw a consistent error for a failed Shodan response, appending the API's own
+// error message (e.g. "Invalid API key", "No information available") when present.
+async function shodanError(res: Response, action: string): Promise<Error> {
+  const apiError = await res.json().then((d: any) => d?.error).catch(() => undefined);
+  return new Error(`Shodan ${action} failed: ${res.status} ${res.statusText}${apiError ? ` — ${apiError}` : ""}`);
+}
+
 // ─── Types ───
 
 interface ShodanService {
@@ -62,7 +69,11 @@ export async function shodanHost(ip: string, apiKey: string): Promise<ShodanHost
 
   await limiter.acquire();
   const res = await fetch(`https://api.shodan.io/shodan/host/${encodeURIComponent(ip)}?key=${apiKey}`);
-  if (!res.ok) throw new Error(`Shodan host lookup failed: ${res.status} ${res.statusText}`);
+  if (res.status === 404) {
+    // Shodan returns 404 when it simply has no scan data for the IP — not a failure.
+    throw new Error(`Shodan has no information for ${ip} (the host has not been indexed by Shodan).`);
+  }
+  if (!res.ok) throw await shodanError(res, "host lookup");
   const data = await res.json();
 
   const services: ShodanService[] = (data.data ?? []).map((s: any) => ({
@@ -102,7 +113,7 @@ export async function shodanSearch(query: string, apiKey: string, page = 1, face
   if (facets) params.set("facets", facets);
 
   const res = await fetch(`https://api.shodan.io/shodan/host/search?${params}`);
-  if (!res.ok) throw new Error(`Shodan search failed: ${res.status} ${res.statusText}`);
+  if (!res.ok) throw await shodanError(res, "search");
   const data = await res.json();
 
   return {
@@ -127,7 +138,7 @@ export async function shodanDnsResolve(hostnames: string[], apiKey: string): Pro
   await limiter.acquire();
   const csv = hostnames.join(",");
   const res = await fetch(`https://api.shodan.io/dns/resolve?hostnames=${encodeURIComponent(csv)}&key=${apiKey}`);
-  if (!res.ok) throw new Error(`Shodan DNS resolve failed: ${res.status}`);
+  if (!res.ok) throw await shodanError(res, "DNS resolve");
   return res.json();
 }
 
@@ -139,7 +150,7 @@ export async function shodanExploits(query: string, apiKey: string, type?: strin
   if (type) params.set("type", type);
 
   const res = await fetch(`https://exploits.shodan.io/api/search?${params}`);
-  if (!res.ok) throw new Error(`Shodan exploit search failed: ${res.status}`);
+  if (!res.ok) throw await shodanError(res, "exploit search");
   const data = await res.json();
 
   return {
