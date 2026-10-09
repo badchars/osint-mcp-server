@@ -15,12 +15,37 @@ export interface CensysAuth {
   orgId?: string;
 }
 
+interface CensysVuln {
+  id: string;
+  severity?: string;
+  cvss?: number;
+  epss?: number;
+  kev: boolean;
+  cwes?: string[];
+}
+
+interface CensysRisk {
+  id?: string;
+  name?: string;
+  severity?: string;
+}
+
 interface CensysService {
   port: number;
   serviceName: string;
   transportProtocol: string;
   certificate?: string;
   software?: string[];
+  /** Software/components flagged end-of-life by Censys (Enterprise plans) */
+  endOfLife?: string[];
+  labels?: string[];
+  /** CVEs (Censys Core/Enterprise plans) */
+  vulns?: CensysVuln[];
+  exposures?: CensysRisk[];
+  misconfigs?: CensysRisk[];
+  threats?: { name?: string; tactic?: string[]; type?: string[] }[];
+  tls?: { versionSelected?: string; cipherSelected?: string; versions?: string[] };
+  http?: { statusCode?: number; title?: string; path?: string }[];
   scanTime?: string;
 }
 
@@ -33,6 +58,7 @@ interface CensysHost {
   operatingSystem?: { vendor?: string; product?: string; version?: string };
   dnsNames?: string[];
   labels?: string[];
+  vulnSummary?: { total: number; kev: number; critical: number; high: number };
 }
 
 interface CensysHostsResult {
@@ -101,27 +127,86 @@ function first(arr: unknown): string | undefined {
   return Array.isArray(arr) && arr.length > 0 ? String(arr[0]) : undefined;
 }
 
+function nonEmpty<T>(arr: T[] | undefined): T[] | undefined {
+  return arr && arr.length > 0 ? arr : undefined;
+}
+
+function list(x: unknown): any[] {
+  return Array.isArray(x) ? x : [];
+}
+
+function softwareName(sw: any): string {
+  return [sw.vendor, sw.product, sw.version].filter(Boolean).join(" ");
+}
+
+function normalizeVuln(v: any): CensysVuln {
+  const m = v.metrics ?? {};
+  return {
+    id: v.id ?? v.name ?? "",
+    severity: v.severity || undefined,
+    cvss: m.cvss_v40?.score ?? m.cvss_v31?.score ?? m.cvss_v30?.score,
+    epss: m.epss?.score,
+    kev: list(v.kev).length > 0,
+    cwes: nonEmpty(list(v.cwes).map((c) => c.entry).filter(Boolean)),
+  };
+}
+
+/** Censys severity when present, otherwise derived from the CVSS score. */
+function severityOf(v: CensysVuln): string | undefined {
+  if (v.severity) return v.severity;
+  if (v.cvss === undefined) return undefined;
+  return v.cvss >= 9 ? "critical" : v.cvss >= 7 ? "high" : v.cvss >= 4 ? "medium" : "low";
+}
+
+function normalizeRisk(r: any): CensysRisk {
+  return { id: r.id, name: r.name, severity: r.severity || undefined };
+}
+
 function normalizeService(s: any): CensysService {
+  const software = list(s.software);
+  const eol: string[] = [];
+  for (const sw of software) {
+    if (sw.life_cycle?.end_of_life) eol.push(softwareName(sw));
+    for (const c of list(sw.components)) if (c.life_cycle?.end_of_life) eol.push(softwareName(c));
+  }
+  const httpEndpoints = list(s.endpoints)
+    .filter((e) => e.http)
+    .map((e) => ({ statusCode: e.http.status_code, title: e.http.html_title, path: e.path }));
+
   return {
     port: s.port,
     serviceName: s.protocol ?? "",
     transportProtocol: s.transport_protocol ?? "tcp",
     certificate: s.cert?.fingerprint_sha256,
-    software: Array.isArray(s.software)
-      ? s.software
-          .map((sw: any) => [sw.vendor, sw.product, sw.version].filter(Boolean).join(" "))
-          .filter((x: string) => x.length > 0)
+    software: nonEmpty(software.map(softwareName).filter((x: string) => x.length > 0)),
+    endOfLife: nonEmpty(eol),
+    labels: nonEmpty(list(s.labels).map((l) => l.value ?? l).filter(Boolean)),
+    vulns: nonEmpty(list(s.vulns).map(normalizeVuln)),
+    exposures: nonEmpty(list(s.exposures).map(normalizeRisk)),
+    misconfigs: nonEmpty(list(s.misconfigs).map(normalizeRisk)),
+    threats: nonEmpty(list(s.threats).map((t) => ({ name: t.name, tactic: t.tactic ?? undefined, type: t.type ?? undefined }))),
+    tls: s.tls
+      ? {
+          versionSelected: s.tls.version_selected || undefined,
+          cipherSelected: s.tls.cipher_selected || undefined,
+          versions: nonEmpty(list(s.tls.versions).map((v) => v.version).filter(Boolean)),
+        }
       : undefined,
+    http: nonEmpty(httpEndpoints),
     scanTime: s.scan_time,
   };
 }
 
 function normalizeHost(h: any, fallbackIp = ""): CensysHost {
   const os = h.operating_system;
+  const services: CensysService[] = (h.services ?? []).map(normalizeService);
+  const vulns = new Map<string, CensysVuln>();
+  for (const svc of services) for (const v of svc.vulns ?? []) vulns.set(v.id, v);
+  const all = [...vulns.values()];
   return {
     ip: h.ip ?? fallbackIp,
     serviceCount: h.service_count,
-    services: (h.services ?? []).map(normalizeService),
+    services,
     location: h.location
       ? {
           country: h.location.country,
@@ -141,6 +226,15 @@ function normalizeHost(h: any, fallbackIp = ""): CensysHost {
     operatingSystem: os ? { vendor: os.vendor, product: os.product, version: os.version } : undefined,
     dnsNames: h.dns?.names,
     labels: Array.isArray(h.labels) ? h.labels.map((l: any) => l.value ?? l).filter(Boolean) : undefined,
+    vulnSummary:
+      all.length > 0
+        ? {
+            total: all.length,
+            kev: all.filter((v) => v.kev).length,
+            critical: all.filter((v) => severityOf(v) === "critical").length,
+            high: all.filter((v) => severityOf(v) === "high").length,
+          }
+        : undefined,
   };
 }
 

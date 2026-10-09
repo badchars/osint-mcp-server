@@ -47,7 +47,7 @@
   <a href="#po-čemu-se-razlikuje">Po čemu se razlikuje</a> &bull;
   <a href="#brzi-start">Brzi start</a> &bull;
   <a href="#što-ai-može-raditi">Što AI može raditi</a> &bull;
-  <a href="#pregled-alata-37-alata">Alati (37)</a> &bull;
+  <a href="#pregled-alata-42-alata">Alati (42)</a> &bull;
   <a href="#izvori-podataka-12">Izvori podataka</a> &bull;
   <a href="#arhitektura">Arhitektura</a>
 </p>
@@ -57,8 +57,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Tools">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Sources">
+  <img src="https://img.shields.io/badge/tools-42-06b6d4" alt="42 Tools">
+  <img src="https://img.shields.io/badge/sources-14-0ea5e9" alt="14 Sources">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
@@ -83,7 +83,7 @@ Tradicionalni OSINT tok rada:
   Ukupno: 45+ minuta po meti, većina toga prebacivanje konteksta
 ```
 
-**osint-mcp-server** daje vašem AI agentu 37 alata preko 12 izvora podataka putem [Model Context Protocol](https://modelcontextprotocol.io). Agent upituje sve izvore paralelno, korelira podatke, identificira rizike i predstavlja jedinstvenu obavještajnu sliku &mdash; u jednom razgovoru.
+**osint-mcp-server** daje vašem AI agentu 42 alata preko 12 izvora podataka putem [Model Context Protocol](https://modelcontextprotocol.io). Agent upituje sve izvore paralelno, korelira podatke, identificira rizike i predstavlja jedinstvenu obavještajnu sliku &mdash; u jednom razgovoru.
 
 ```
 Sa osint-mcp-server:
@@ -341,7 +341,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## Pregled alata (37 alata)
+## Pregled alata (42 alata)
 
 <details open>
 <summary><b>DNS (6) &mdash; Nije potreban API ključ</b></summary>
@@ -486,7 +486,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## Izvori podataka (12)
+## Izvori podataka (14)
 
 | Izvor | Autentifikacija | Ograničenje brzine | Što pruža |
 |-------|-----------------|-------------------|-----------|
@@ -513,7 +513,7 @@ src/
 ├── types/
 │   └── index.ts                ToolDef, ToolContext, ToolResult
 ├── protocol/
-│   ├── tools.ts                37 definicija alata (Zod šeme)
+│   ├── tools.ts                42 definicija alata (Zod šeme)
 │   └── mcp-server.ts           MCP server + stdio transport
 ├── dns/
 │   └── index.ts                6 funkcija — lookup, reverse, email, SPF chain, SRV, wildcard
@@ -580,7 +580,7 @@ src/
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | Cloud sigurnost (AWS/Azure/GCP) | 38 alata, 60+ provjera |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | GitHub sigurnosna pozicija | 39 alata, 45 provjera |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | Obavještavanje o ranjivostima | 23 alata, 5 izvora |
-| **osint-mcp-server** | **OSINT i izviđanje** | **37 alata, 12 izvora** |
+| **osint-mcp-server** | **OSINT i izviđanje** | **42 alata, 12 izvora** |
 
 ---
 

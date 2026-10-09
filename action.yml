@@ -1,5 +1,5 @@
 name: 'OSINT MCP Server'
-description: '37 OSINT tools for CI/CD — DNS, WHOIS, Shodan, VirusTotal, Censys, crt.sh, BGP, Wayback & more'
+description: '42 OSINT tools for CI/CD — DNS, WHOIS, Shodan, VirusTotal, Censys, crt.sh, BGP, Wayback & more'
 author: 'Orhan Yildirim'
 
 branding:

@@ -47,7 +47,7 @@
   <a href="#farkımız">Farkımız</a> &bull;
   <a href="#hızlı-başlangıç">Hızlı Başlangıç</a> &bull;
   <a href="#yapay-zeka-neler-yapabilir">Yapay Zeka Neler Yapabilir</a> &bull;
-  <a href="#araç-referansı-37-araç">Araçlar (37)</a> &bull;
+  <a href="#araç-referansı-42-araç">Araçlar (42)</a> &bull;
   <a href="#veri-kaynakları-12">Veri Kaynakları</a> &bull;
   <a href="#mimari">Mimari</a>
 </p>
@@ -57,8 +57,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Tools">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Sources">
+  <img src="https://img.shields.io/badge/tools-42-06b6d4" alt="42 Tools">
+  <img src="https://img.shields.io/badge/sources-14-0ea5e9" alt="14 Sources">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
@@ -83,7 +83,7 @@ Geleneksel OSINT iş akışı:
   Toplam: Hedef başına 45+ dakika, büyük kısmı bağlam değiştirmeyle geçer
 ```
 
-**osint-mcp-server**, yapay zeka ajanınıza [Model Context Protocol](https://modelcontextprotocol.io) aracılığıyla 12 veri kaynağında 37 araç sunar. Ajan tüm kaynakları paralel olarak sorgular, verileri ilişkilendirir, riskleri tespit eder ve tek bir konuşmada birleşik bir istihbarat tablosu sunar.
+**osint-mcp-server**, yapay zeka ajanınıza [Model Context Protocol](https://modelcontextprotocol.io) aracılığıyla 12 veri kaynağında 42 araç sunar. Ajan tüm kaynakları paralel olarak sorgular, verileri ilişkilendirir, riskleri tespit eder ve tek bir konuşmada birleşik bir istihbarat tablosu sunar.
 
 ```
 osint-mcp-server ile:
@@ -343,7 +343,7 @@ Ajan: → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## Araç Referansı (37 araç)
+## Araç Referansı (42 araç)
 
 <details open>
 <summary><b>DNS (6) &mdash; API anahtarı gerekmez</b></summary>
@@ -488,7 +488,7 @@ Ajan: → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## Veri Kaynakları (12)
+## Veri Kaynakları (14)
 
 | Kaynak | Kimlik Doğrulama | Hız Sınırı | Sağladığı Veriler |
 |--------|-------------------|------------|-------------------|
@@ -515,7 +515,7 @@ src/
 ├── types/
 │   └── index.ts                ToolDef, ToolContext, ToolResult
 ├── protocol/
-│   ├── tools.ts                37 araç tanımı (Zod şemaları)
+│   ├── tools.ts                42 araç tanımı (Zod şemaları)
 │   └── mcp-server.ts           MCP sunucusu + stdio aktarımı
 ├── dns/
 │   └── index.ts                6 fonksiyon — lookup, reverse, email, SPF chain, SRV, wildcard
@@ -582,7 +582,7 @@ src/
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | Bulut güvenliği (AWS/Azure/GCP) | 38 araç, 60+ kontrol |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | GitHub güvenlik duruşu | 39 araç, 45 kontrol |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | Zafiyet istihbaratı | 23 araç, 5 kaynak |
-| **osint-mcp-server** | **OSINT ve keşif** | **37 araç, 12 kaynak** |
+| **osint-mcp-server** | **OSINT ve keşif** | **42 araç, 12 kaynak** |
 
 ---
 

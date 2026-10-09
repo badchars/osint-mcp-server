@@ -47,7 +47,7 @@
   <a href="#ความแตกต่าง">ความแตกต่าง</a> &bull;
   <a href="#เริ่มต้นอย่างรวดเร็ว">เริ่มต้นอย่างรวดเร็ว</a> &bull;
   <a href="#สิ่งที่-ai-สามารถทำได้">สิ่งที่ AI สามารถทำได้</a> &bull;
-  <a href="#เครื่องมืออ้างอิง-37-เครื่องมือ">เครื่องมือ (37)</a> &bull;
+  <a href="#เครื่องมืออ้างอิง-42-เครื่องมือ">เครื่องมือ (42)</a> &bull;
   <a href="#แหล่งข้อมูล-12">แหล่งข้อมูล</a> &bull;
   <a href="#สถาปัตยกรรม">สถาปัตยกรรม</a>
 </p>
@@ -57,8 +57,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Tools">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Sources">
+  <img src="https://img.shields.io/badge/tools-42-06b6d4" alt="42 Tools">
+  <img src="https://img.shields.io/badge/sources-14-0ea5e9" alt="14 Sources">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
@@ -83,7 +83,7 @@
   รวม: 45+ นาทีต่อเป้าหมาย ส่วนใหญ่คือการสลับบริบท
 ```
 
-**osint-mcp-server** ให้เครื่องมือ 37 รายการจาก 12 แหล่งข้อมูลแก่ตัวแทน AI ของคุณผ่าน [Model Context Protocol](https://modelcontextprotocol.io) ตัวแทนจะสอบถามแหล่งข้อมูลทั้งหมดแบบขนาน เชื่อมโยงข้อมูล ระบุความเสี่ยง และนำเสนอภาพข่าวกรองแบบครบวงจร &mdash; ในการสนทนาเดียว
+**osint-mcp-server** ให้เครื่องมือ 42 รายการจาก 12 แหล่งข้อมูลแก่ตัวแทน AI ของคุณผ่าน [Model Context Protocol](https://modelcontextprotocol.io) ตัวแทนจะสอบถามแหล่งข้อมูลทั้งหมดแบบขนาน เชื่อมโยงข้อมูล ระบุความเสี่ยง และนำเสนอภาพข่าวกรองแบบครบวงจร &mdash; ในการสนทนาเดียว
 
 ```
 ด้วย osint-mcp-server:
@@ -341,7 +341,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 
 ---
 
-## เครื่องมืออ้างอิง (37 เครื่องมือ)
+## เครื่องมืออ้างอิง (42 เครื่องมือ)
 
 <details open>
 <summary><b>DNS (6) &mdash; ไม่ต้องใช้คีย์ API</b></summary>
@@ -486,7 +486,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 
 ---
 
-## แหล่งข้อมูล (12)
+## แหล่งข้อมูล (14)
 
 | แหล่ง | การตรวจสอบสิทธิ์ | ขีดจำกัดอัตรา | สิ่งที่ให้ |
 |--------|------|-----------|-----------------|
@@ -513,7 +513,7 @@ src/
 ├── types/
 │   └── index.ts                ToolDef, ToolContext, ToolResult
 ├── protocol/
-│   ├── tools.ts                37 คำนิยามเครื่องมือ (Zod schemas)
+│   ├── tools.ts                42 คำนิยามเครื่องมือ (Zod schemas)
 │   └── mcp-server.ts           เซิร์ฟเวอร์ MCP + stdio transport
 ├── dns/
 │   └── index.ts                6 ฟังก์ชัน — lookup, reverse, email, SPF chain, SRV, wildcard
@@ -580,7 +580,7 @@ src/
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | ความปลอดภัยคลาวด์ (AWS/Azure/GCP) | 38 เครื่องมือ, 60+ การตรวจสอบ |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | ท่าทางความปลอดภัย GitHub | 39 เครื่องมือ, 45 การตรวจสอบ |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | ข่าวกรองช่องโหว่ | 23 เครื่องมือ, 5 แหล่ง |
-| **osint-mcp-server** | **OSINT และการลาดตระเวน** | **37 เครื่องมือ, 12 แหล่ง** |
+| **osint-mcp-server** | **OSINT และการลาดตระเวน** | **42 เครื่องมือ, 12 แหล่ง** |
 
 ---
 

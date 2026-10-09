@@ -47,7 +47,7 @@
   <a href="#ما-الفرق">ما الفرق</a> &bull;
   <a href="#البداية-السريعة">البداية السريعة</a> &bull;
   <a href="#ما-يمكن-للذكاء-الاصطناعي-فعله">ما يمكن للذكاء الاصطناعي فعله</a> &bull;
-  <a href="#مرجع-الأدوات-37-أداة">الأدوات (37)</a> &bull;
+  <a href="#مرجع-الأدوات-42-أداة">الأدوات (42)</a> &bull;
   <a href="#مصادر-البيانات-12">مصادر البيانات</a> &bull;
   <a href="#البنية">البنية</a>
 </p>
@@ -57,8 +57,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Tools">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Sources">
+  <img src="https://img.shields.io/badge/tools-42-06b6d4" alt="42 Tools">
+  <img src="https://img.shields.io/badge/sources-14-0ea5e9" alt="14 Sources">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
@@ -83,7 +83,7 @@
   المجموع: أكثر من 45 دقيقة لكل هدف، معظمها في التنقل بين السياقات
 ```
 
-**osint-mcp-server** يمنح وكيل الذكاء الاصطناعي 37 أداة عبر 12 مصدر بيانات من خلال [بروتوكول سياق النموذج](https://modelcontextprotocol.io). يستعلم الوكيل من جميع المصادر بالتوازي، ويربط البيانات، ويحدد المخاطر، ويقدم صورة استخباراتية موحّدة &mdash; في محادثة واحدة.
+**osint-mcp-server** يمنح وكيل الذكاء الاصطناعي 42 أداة عبر 12 مصدر بيانات من خلال [بروتوكول سياق النموذج](https://modelcontextprotocol.io). يستعلم الوكيل من جميع المصادر بالتوازي، ويربط البيانات، ويحدد المخاطر، ويقدم صورة استخباراتية موحّدة &mdash; في محادثة واحدة.
 
 ```
 مع osint-mcp-server:
@@ -341,7 +341,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 
 ---
 
-## مرجع الأدوات (37 أداة)
+## مرجع الأدوات (42 أداة)
 
 <details open>
 <summary><b>DNS (6) &mdash; بدون مفتاح API</b></summary>
@@ -486,7 +486,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 
 ---
 
-## مصادر البيانات (12)
+## مصادر البيانات (14)
 
 | المصدر | المصادقة | حد الاستخدام | ما يوفره |
 |--------|----------|-------------|----------|
@@ -513,7 +513,7 @@ src/
 ├── types/
 │   └── index.ts                ToolDef, ToolContext, ToolResult
 ├── protocol/
-│   ├── tools.ts                37 تعريف أداة (مخططات Zod)
+│   ├── tools.ts                42 تعريف أداة (مخططات Zod)
 │   └── mcp-server.ts           خادم MCP + نقل stdio
 ├── dns/
 │   └── index.ts                6 دوال — lookup، reverse، email، سلسلة SPF، SRV، wildcard
@@ -580,7 +580,7 @@ src/
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | أمان السحابة (AWS/Azure/GCP) | 38 أداة، أكثر من 60 فحصاً |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | الوضع الأمني لـ GitHub | 39 أداة، 45 فحصاً |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | استخبارات الثغرات | 23 أداة، 5 مصادر |
-| **osint-mcp-server** | **الاستخبارات مفتوحة المصدر والاستطلاع** | **37 أداة، 12 مصدراً** |
+| **osint-mcp-server** | **الاستخبارات مفتوحة المصدر والاستطلاع** | **42 أداة، 12 مصدراً** |
 
 ---
 

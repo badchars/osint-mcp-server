@@ -32,8 +32,10 @@ const TOOL_CATEGORIES: { label: string; env: string | null; tools: string[] }[] 
   { label: "Wayback Machine", env: null, tools: ["wayback_urls", "wayback_snapshots"] },
   { label: "HackerTarget", env: null, tools: ["hackertarget_hostsearch", "hackertarget_reverseip", "hackertarget_aslookup"] },
   { label: "Microsoft 365", env: null, tools: ["m365_tenant", "m365_userrealm"] },
-  { label: "Meta", env: null, tools: ["osint_list_sources", "osint_domain_recon"] },
-  { label: "Shodan", env: "SHODAN_API_KEY", tools: ["shodan_host", "shodan_search", "shodan_dns_resolve", "shodan_exploits"] },
+  { label: "Shodan InternetDB", env: null, tools: ["internetdb_host"] },
+  { label: "Shodan CVEDB", env: null, tools: ["cve_lookup", "cve_search"] },
+  { label: "Meta", env: null, tools: ["osint_list_sources", "osint_domain_recon", "osint_host_exposure"] },
+  { label: "Shodan", env: "SHODAN_API_KEY", tools: ["shodan_host", "shodan_search", "shodan_count", "shodan_dns_resolve", "shodan_exploits"] },
   { label: "VirusTotal", env: "VT_API_KEY", tools: ["vt_domain", "vt_ip", "vt_subdomains", "vt_url"] },
   { label: "SecurityTrails", env: "ST_API_KEY", tools: ["st_subdomains", "st_dns_history", "st_whois"] },
   { label: "Censys", env: "CENSYS_API_TOKEN (+ CENSYS_ORG_ID)", tools: ["censys_hosts", "censys_host_details", "censys_certificates"] },
@@ -57,19 +59,19 @@ function printHelp(): void {
   console.log("");
   console.log("Options:");
   console.log("  --tool <name>     Run a specific tool by name");
-  console.log("  --list            List all 37 tools with descriptions");
+  console.log("  --list            List all 42 tools with descriptions");
   console.log("  --format <type>   Output format: json (default) or text");
   console.log("  --help, -h        Show this help message");
   console.log("");
   console.log("Environment variables (all optional):");
-  console.log("  SHODAN_API_KEY       Enables 4 Shodan tools");
+  console.log("  SHODAN_API_KEY       Enables 5 Shodan tools");
   console.log("  VT_API_KEY           Enables 4 VirusTotal tools");
   console.log("  ST_API_KEY           Enables 3 SecurityTrails tools");
   console.log("  CENSYS_API_TOKEN     Enables 3 Censys tools (Platform API Personal Access Token)");
   console.log("  CENSYS_ORG_ID        Censys organization ID (required for paid plans)");
   console.log("");
   console.log("Without any flags, starts an MCP server on stdio (for AI agents).");
-  console.log("21 tools work without API keys (DNS, WHOIS, crt.sh, BGP, GeoIP, Wayback, HackerTarget, M365).");
+  console.log("25 tools work without API keys (DNS, WHOIS, crt.sh, BGP, GeoIP, Wayback, HackerTarget, M365, Shodan InternetDB, CVEDB).");
 }
 
 // ─── CLI: Print Tool List ───

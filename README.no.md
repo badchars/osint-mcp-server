@@ -47,7 +47,7 @@
   <a href="#hvordan-det-er-forskjellig">Hvordan Det Er Forskjellig</a> &bull;
   <a href="#hurtigstart">Hurtigstart</a> &bull;
   <a href="#hva-ai-en-kan-gjøre">Hva AI-en Kan Gjøre</a> &bull;
-  <a href="#verktøyreferanse-37-verktøy">Verktøy (37)</a> &bull;
+  <a href="#verktøyreferanse-42-verktøy">Verktøy (42)</a> &bull;
   <a href="#datakilder-12">Datakilder</a> &bull;
   <a href="#arkitektur">Arkitektur</a>
 </p>
@@ -57,8 +57,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Tools">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Sources">
+  <img src="https://img.shields.io/badge/tools-42-06b6d4" alt="42 Tools">
+  <img src="https://img.shields.io/badge/sources-14-0ea5e9" alt="14 Sources">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
@@ -83,7 +83,7 @@ Tradisjonell OSINT-arbeidsflyt:
   Totalt: 45+ minutter per mål, mesteparten av det å bytte kontekst
 ```
 
-**osint-mcp-server** gir din AI-agent 37 verktøy på tvers av 12 datakilder via [Model Context Protocol](https://modelcontextprotocol.io). Agenten spør alle kilder parallelt, korrelerer data, identifiserer risikoer og presenterer et enhetlig etterretningsbilde &mdash; i én enkelt samtale.
+**osint-mcp-server** gir din AI-agent 42 verktøy på tvers av 12 datakilder via [Model Context Protocol](https://modelcontextprotocol.io). Agenten spør alle kilder parallelt, korrelerer data, identifiserer risikoer og presenterer et enhetlig etterretningsbilde &mdash; i én enkelt samtale.
 
 ```
 Med osint-mcp-server:
@@ -341,7 +341,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## Verktøyreferanse (37 verktøy)
+## Verktøyreferanse (42 verktøy)
 
 <details open>
 <summary><b>DNS (6) &mdash; Ingen API-nøkkel</b></summary>
@@ -486,7 +486,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## Datakilder (12)
+## Datakilder (14)
 
 | Kilde | Autentisering | Hastighetsbegrensning | Hva den gir |
 |--------|------|-----------|-----------------|
@@ -513,7 +513,7 @@ src/
 ├── types/
 │   └── index.ts                ToolDef, ToolContext, ToolResult
 ├── protocol/
-│   ├── tools.ts                37 verktøydefinisjoner (Zod-skjemaer)
+│   ├── tools.ts                42 verktøydefinisjoner (Zod-skjemaer)
 │   └── mcp-server.ts           MCP-server + stdio-transport
 ├── dns/
 │   └── index.ts                6 funksjoner — oppslag, omvendt, e-post, SPF-kjede, SRV, wildcard
@@ -580,7 +580,7 @@ src/
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | Skybasert sikkerhet (AWS/Azure/GCP) | 38 verktøy, 60+ kontroller |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | GitHub-sikkerhetsposisjon | 39 verktøy, 45 kontroller |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | Sårbarhetsetterretning | 23 verktøy, 5 kilder |
-| **osint-mcp-server** | **OSINT & rekognosering** | **37 verktøy, 12 kilder** |
+| **osint-mcp-server** | **OSINT & rekognosering** | **42 verktøy, 12 kilder** |
 
 ---
 

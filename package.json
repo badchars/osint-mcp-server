@@ -1,7 +1,7 @@
 {
   "name": "osint-mcp-server",
   "version": "0.2.0",
-  "description": "OSINT intelligence MCP server — Shodan, VirusTotal, SecurityTrails, Censys, DNS, WHOIS, crt.sh, Wayback, BGP",
+  "description": "OSINT intelligence MCP server — Shodan (+ InternetDB & CVEDB), VirusTotal, SecurityTrails, Censys, DNS, WHOIS, crt.sh, Wayback, BGP",
   "type": "module",
   "bin": {
     "osint-mcp-server": "dist/index.js"
@@ -23,6 +23,8 @@
     "shodan", "virustotal", "censys", "securitytrails",
     "dns", "whois", "bgp", "geoip", "wayback-machine", "crtsh",
     "certificate-transparency", "ip-lookup", "hackertarget",
+    "vulnerability", "cve", "cvss", "epss", "kev", "internetdb", "cvedb",
+    "vulnerability-assessment", "attack-surface-management",
     "ai", "ai-agent", "claude", "llm"
   ],
   "author": "Orhan Yildirim <contact@orhanyildirim.us> (https://orhanyildirim.us)",

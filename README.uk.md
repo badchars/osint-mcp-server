@@ -47,7 +47,7 @@
   <a href="#чим-це-відрізняється">Чим це відрізняється</a> &bull;
   <a href="#швидкий-старт">Швидкий старт</a> &bull;
   <a href="#що-може-робити-ai">Що може робити AI</a> &bull;
-  <a href="#довідка-по-інструментах-37-інструментів">Інструменти (37)</a> &bull;
+  <a href="#довідка-по-інструментах-42-інструментів">Інструменти (42)</a> &bull;
   <a href="#джерела-даних-12">Джерела даних</a> &bull;
   <a href="#архітектура">Архітектура</a>
 </p>
@@ -57,8 +57,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Tools">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Sources">
+  <img src="https://img.shields.io/badge/tools-42-06b6d4" alt="42 Tools">
+  <img src="https://img.shields.io/badge/sources-14-0ea5e9" alt="14 Sources">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
@@ -83,7 +83,7 @@
   Всього: 45+ хвилин на ціль, більшість — перемикання контекстів
 ```
 
-**osint-mcp-server** дає вашому AI-агенту 37 інструментів з 12 джерел даних через [Model Context Protocol](https://modelcontextprotocol.io). Агент запитує всі джерела паралельно, співставляє дані, визначає ризики і представляє єдину розвідувальну картину &mdash; в одній розмові.
+**osint-mcp-server** дає вашому AI-агенту 42 інструментів з 12 джерел даних через [Model Context Protocol](https://modelcontextprotocol.io). Агент запитує всі джерела паралельно, співставляє дані, визначає ризики і представляє єдину розвідувальну картину &mdash; в одній розмові.
 
 ```
 З osint-mcp-server:
@@ -341,7 +341,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 
 ---
 
-## Довідка по інструментах (37 інструментів)
+## Довідка по інструментах (42 інструментів)
 
 <details open>
 <summary><b>DNS (6) &mdash; Без API-ключа</b></summary>
@@ -486,7 +486,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 
 ---
 
-## Джерела даних (12)
+## Джерела даних (14)
 
 | Джерело | Автентифікація | Обмеження швидкості | Що надає |
 |--------|------|-----------|-----------------|
@@ -513,7 +513,7 @@ src/
 ├── types/
 │   └── index.ts                ToolDef, ToolContext, ToolResult
 ├── protocol/
-│   ├── tools.ts                37 визначень інструментів (Zod-схеми)
+│   ├── tools.ts                42 визначень інструментів (Zod-схеми)
 │   └── mcp-server.ts           MCP-сервер + stdio-транспорт
 ├── dns/
 │   └── index.ts                6 функцій — lookup, reverse, email, SPF-ланцюг, SRV, wildcard
@@ -580,7 +580,7 @@ src/
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | Безпека хмари (AWS/Azure/GCP) | 38 інструментів, 60+ перевірок |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | Стан безпеки GitHub | 39 інструментів, 45 перевірок |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | Розвідка вразливостей | 23 інструменти, 5 джерел |
-| **osint-mcp-server** | **OSINT та розвідка** | **37 інструментів, 12 джерел** |
+| **osint-mcp-server** | **OSINT та розвідка** | **42 інструментів, 12 джерел** |
 
 ---
 

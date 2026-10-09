@@ -47,7 +47,7 @@
   <a href="#차별점">차별점</a> &bull;
   <a href="#빠른-시작">빠른 시작</a> &bull;
   <a href="#ai가-할-수-있는-것">AI가 할 수 있는 것</a> &bull;
-  <a href="#도구-레퍼런스-37개-도구">도구 (37)</a> &bull;
+  <a href="#도구-레퍼런스-42개-도구">도구 (42)</a> &bull;
   <a href="#데이터-소스-12개">데이터 소스</a> &bull;
   <a href="#아키텍처">아키텍처</a>
 </p>
@@ -57,8 +57,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Tools">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Sources">
+  <img src="https://img.shields.io/badge/tools-42-06b6d4" alt="42 Tools">
+  <img src="https://img.shields.io/badge/sources-14-0ea5e9" alt="14 Sources">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
@@ -83,7 +83,7 @@ OSINT 수집은 모든 침투 테스트, 버그 바운티 및 위협 평가의 �
   총: 대상당 45분 이상, 대부분 컨텍스트 전환
 ```
 
-**osint-mcp-server**는 [Model Context Protocol](https://modelcontextprotocol.io)을 통해 AI 에이전트에게 12개 데이터 소스에 걸쳐 37개 도구를 제공합니다. 에이전트는 모든 소스를 병렬로 쿼리하고, 데이터를 상관 분석하고, 위험을 식별하고, 통합된 인텔리전스 그림을 단일 대화로 제공합니다.
+**osint-mcp-server**는 [Model Context Protocol](https://modelcontextprotocol.io)을 통해 AI 에이전트에게 12개 데이터 소스에 걸쳐 42개 도구를 제공합니다. 에이전트는 모든 소스를 병렬로 쿼리하고, 데이터를 상관 분석하고, 위험을 식별하고, 통합된 인텔리전스 그림을 단일 대화로 제공합니다.
 
 ```
 osint-mcp-server 사용 시:
@@ -342,7 +342,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 
 ---
 
-## 도구 레퍼런스 (37개 도구)
+## 도구 레퍼런스 (42개 도구)
 
 <details open>
 <summary><b>DNS (6) &mdash; API 키 불필요</b></summary>
@@ -514,7 +514,7 @@ src/
 ├── types/
 │   └── index.ts                ToolDef, ToolContext, ToolResult
 ├── protocol/
-│   ├── tools.ts                37개 도구 정의 (Zod 스키마)
+│   ├── tools.ts                42개 도구 정의 (Zod 스키마)
 │   └── mcp-server.ts           MCP 서버 + stdio 전송
 ├── dns/
 │   └── index.ts                6개 함수 — 조회, 역방향, 이메일, SPF 체인, SRV, 와일드카드
@@ -581,7 +581,7 @@ src/
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | 클라우드 보안 (AWS/Azure/GCP) | 38개 도구, 60개 이상 검사 |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | GitHub 보안 태세 | 39개 도구, 45개 검사 |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | 취약점 인텔리전스 | 23개 도구, 5개 소스 |
-| **osint-mcp-server** | **OSINT 및 정찰** | **37개 도구, 12개 소스** |
+| **osint-mcp-server** | **OSINT 및 정찰** | **42개 도구, 12개 소스** |
 
 ---
 

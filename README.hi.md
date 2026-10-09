@@ -47,7 +47,7 @@
   <a href="#यह-कैसे-अलग-है">यह कैसे अलग है</a> &bull;
   <a href="#त्वरित-शुरुआत">त्वरित शुरुआत</a> &bull;
   <a href="#ai-क्या-कर-सकता-है">AI क्या कर सकता है</a> &bull;
-  <a href="#उपकरण-संदर्भ-37-उपकरण">उपकरण (37)</a> &bull;
+  <a href="#उपकरण-संदर्भ-42-उपकरण">उपकरण (42)</a> &bull;
   <a href="#डेटा-स्रोत-12">डेटा स्रोत</a> &bull;
   <a href="#वास्तुकला">वास्तुकला</a>
 </p>
@@ -57,8 +57,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Tools">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Sources">
+  <img src="https://img.shields.io/badge/tools-42-06b6d4" alt="42 Tools">
+  <img src="https://img.shields.io/badge/sources-14-0ea5e9" alt="14 Sources">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
@@ -83,7 +83,7 @@ OSINT संग्रह हर पेनिट्रेशन टेस्ट, 
   कुल: प्रति लक्ष्य 45+ मिनट, अधिकांश समय संदर्भ बदलने में
 ```
 
-**osint-mcp-server** आपके AI एजेंट को [Model Context Protocol](https://modelcontextprotocol.io) के माध्यम से 12 डेटा स्रोतों में 37 उपकरण देता है। एजेंट सभी स्रोतों को समानांतर में क्वेरी करता है, डेटा को सहसंबंधित करता है, जोखिमों की पहचान करता है, और एक एकीकृत खुफिया तस्वीर प्रस्तुत करता है &mdash; एक ही बातचीत में।
+**osint-mcp-server** आपके AI एजेंट को [Model Context Protocol](https://modelcontextprotocol.io) के माध्यम से 12 डेटा स्रोतों में 42 उपकरण देता है। एजेंट सभी स्रोतों को समानांतर में क्वेरी करता है, डेटा को सहसंबंधित करता है, जोखिमों की पहचान करता है, और एक एकीकृत खुफिया तस्वीर प्रस्तुत करता है &mdash; एक ही बातचीत में।
 
 ```
 osint-mcp-server के साथ:
@@ -342,7 +342,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 
 ---
 
-## उपकरण संदर्भ (37 उपकरण)
+## उपकरण संदर्भ (42 उपकरण)
 
 <details open>
 <summary><b>DNS (6) &mdash; API कुंजी नहीं चाहिए</b></summary>
@@ -487,7 +487,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 
 ---
 
-## डेटा स्रोत (12)
+## डेटा स्रोत (14)
 
 | स्रोत | प्रमाणीकरण | दर सीमा | क्या प्रदान करता है |
 |--------|------------|---------|-------------------|
@@ -514,7 +514,7 @@ src/
 ├── types/
 │   └── index.ts                ToolDef, ToolContext, ToolResult
 ├── protocol/
-│   ├── tools.ts                37 उपकरण परिभाषाएँ (Zod स्कीमा)
+│   ├── tools.ts                42 उपकरण परिभाषाएँ (Zod स्कीमा)
 │   └── mcp-server.ts           MCP सर्वर + stdio ट्रांसपोर्ट
 ├── dns/
 │   └── index.ts                6 फ़ंक्शन — lookup, reverse, email, SPF chain, SRV, wildcard
@@ -581,7 +581,7 @@ src/
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | क्लाउड सुरक्षा (AWS/Azure/GCP) | 38 उपकरण, 60+ जाँच |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | GitHub सुरक्षा स्थिति | 39 उपकरण, 45 जाँच |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | कमज़ोरी खुफिया जानकारी | 23 उपकरण, 5 स्रोत |
-| **osint-mcp-server** | **OSINT और टोही** | **37 उपकरण, 12 स्रोत** |
+| **osint-mcp-server** | **OSINT और टोही** | **42 उपकरण, 12 स्रोत** |
 
 ---
 

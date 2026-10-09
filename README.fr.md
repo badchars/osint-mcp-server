@@ -47,7 +47,7 @@
   <a href="#en-quoi-cest-différent">En Quoi C'est Différent</a> &bull;
   <a href="#démarrage-rapide">Démarrage Rapide</a> &bull;
   <a href="#ce-que-lia-peut-faire">Ce Que l'IA Peut Faire</a> &bull;
-  <a href="#référence-des-outils-37-outils">Outils (37)</a> &bull;
+  <a href="#référence-des-outils-42-outils">Outils (42)</a> &bull;
   <a href="#sources-de-données-12">Sources de Données</a> &bull;
   <a href="#architecture">Architecture</a>
 </p>
@@ -57,8 +57,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Tools">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Sources">
+  <img src="https://img.shields.io/badge/tools-42-06b6d4" alt="42 Tools">
+  <img src="https://img.shields.io/badge/sources-14-0ea5e9" alt="14 Sources">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
@@ -83,7 +83,7 @@ Flux de travail OSINT traditionnel :
   Total : 45+ minutes par cible, en grande partie à basculer entre les contextes
 ```
 
-**osint-mcp-server** met à disposition de votre agent IA 37 outils couvrant 12 sources de données via le [Model Context Protocol](https://modelcontextprotocol.io). L'agent interroge toutes les sources en parallèle, corrèle les données, identifie les risques et présente une vue de renseignement unifiée &mdash; dans une seule conversation.
+**osint-mcp-server** met à disposition de votre agent IA 42 outils couvrant 14 sources de données via le [Model Context Protocol](https://modelcontextprotocol.io). L'agent interroge toutes les sources en parallèle, corrèle les données, identifie les risques et présente une vue de renseignement unifiée &mdash; dans une seule conversation.
 
 ```
 Avec osint-mcp-server :
@@ -126,7 +126,7 @@ Les outils OSINT existants vous fournissent des données brutes d'une source à 
 <tr>
 <td><b>Sources de données</b></td>
 <td>Une plateforme à la fois</td>
-<td>12 sources interrogées en parallèle</td>
+<td>14 sources interrogées en parallèle</td>
 </tr>
 <tr>
 <td><b>Énumération de sous-domaines</b></td>
@@ -342,7 +342,7 @@ Agent : → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## Référence des Outils (37 outils)
+## Référence des Outils (42 outils)
 
 <details open>
 <summary><b>DNS (6) &mdash; Sans clé API</b></summary>
@@ -487,7 +487,7 @@ Agent : → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## Sources de Données (12)
+## Sources de Données (14)
 
 | Source | Auth | Limite de débit | Ce qu'elle fournit |
 |--------|------|-----------------|-------------------|
@@ -514,7 +514,7 @@ src/
 ├── types/
 │   └── index.ts                ToolDef, ToolContext, ToolResult
 ├── protocol/
-│   ├── tools.ts                37 définitions d'outils (schémas Zod)
+│   ├── tools.ts                42 définitions d'outils (schémas Zod)
 │   └── mcp-server.ts           Serveur MCP + transport stdio
 ├── dns/
 │   └── index.ts                6 fonctions — lookup, reverse, email, chaîne SPF, SRV, wildcard
@@ -581,7 +581,7 @@ src/
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | Sécurité cloud (AWS/Azure/GCP) | 38 outils, 60+ vérifications |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | Posture de sécurité GitHub | 39 outils, 45 vérifications |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | Renseignement sur les vulnérabilités | 23 outils, 5 sources |
-| **osint-mcp-server** | **OSINT et reconnaissance** | **37 outils, 12 sources** |
+| **osint-mcp-server** | **OSINT et reconnaissance** | **42 outils, 14 sources** |
 
 ---
 

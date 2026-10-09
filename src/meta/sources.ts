@@ -19,13 +19,15 @@ export async function checkSources(ctx: ToolContext): Promise<SourceInfo[]> {
     { name: "HackerTarget", url: "hackertarget.com", authRequired: false, configured: true, toolCount: 3 },
     { name: "Wayback Machine", url: "web.archive.org", authRequired: false, configured: true, toolCount: 2 },
     { name: "Microsoft 365", url: "login.microsoftonline.com", authRequired: false, configured: true, toolCount: 2 },
+    { name: "Shodan InternetDB", url: "internetdb.shodan.io", authRequired: false, configured: true, toolCount: 1 },
+    { name: "Shodan CVEDB", url: "cvedb.shodan.io", authRequired: false, configured: true, toolCount: 2 },
     {
       name: "Shodan",
       url: "api.shodan.io",
       authRequired: true,
       configured: !!ctx.config.shodanApiKey,
       envVar: "SHODAN_API_KEY",
-      toolCount: 4,
+      toolCount: 5,
     },
     {
       name: "VirusTotal",

@@ -47,7 +47,7 @@
   <a href="#cómo-es-diferente">Cómo es Diferente</a> &bull;
   <a href="#inicio-rápido">Inicio Rápido</a> &bull;
   <a href="#qué-puede-hacer-la-ia">Qué Puede Hacer la IA</a> &bull;
-  <a href="#referencia-de-herramientas-37-herramientas">Herramientas (37)</a> &bull;
+  <a href="#referencia-de-herramientas-42-herramientas">Herramientas (42)</a> &bull;
   <a href="#fuentes-de-datos-12">Fuentes de Datos</a> &bull;
   <a href="#arquitectura">Arquitectura</a>
 </p>
@@ -57,8 +57,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Tools">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Sources">
+  <img src="https://img.shields.io/badge/tools-42-06b6d4" alt="42 Tools">
+  <img src="https://img.shields.io/badge/sources-14-0ea5e9" alt="14 Sources">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
@@ -83,7 +83,7 @@ Flujo de trabajo OSINT tradicional:
   Total: 45+ minutos por objetivo, la mayoría cambiando de contexto
 ```
 
-**osint-mcp-server** proporciona a tu agente de IA 37 herramientas a través de 12 fuentes de datos mediante el [Model Context Protocol](https://modelcontextprotocol.io). El agente consulta todas las fuentes en paralelo, correlaciona datos, identifica riesgos y presenta una imagen de inteligencia unificada &mdash; en una sola conversación.
+**osint-mcp-server** proporciona a tu agente de IA 42 herramientas a través de 12 fuentes de datos mediante el [Model Context Protocol](https://modelcontextprotocol.io). El agente consulta todas las fuentes en paralelo, correlaciona datos, identifica riesgos y presenta una imagen de inteligencia unificada &mdash; en una sola conversación.
 
 ```
 Con osint-mcp-server:
@@ -341,7 +341,7 @@ Agente: → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## Referencia de Herramientas (37 herramientas)
+## Referencia de Herramientas (42 herramientas)
 
 <details open>
 <summary><b>DNS (6) &mdash; Sin clave API</b></summary>
@@ -486,7 +486,7 @@ Agente: → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## Fuentes de Datos (12)
+## Fuentes de Datos (14)
 
 | Fuente | Auth | Límite de Velocidad | Qué proporciona |
 |--------|------|-----------|-----------------|
@@ -513,7 +513,7 @@ src/
 ├── types/
 │   └── index.ts                ToolDef, ToolContext, ToolResult
 ├── protocol/
-│   ├── tools.ts                37 definiciones de herramientas (esquemas Zod)
+│   ├── tools.ts                42 definiciones de herramientas (esquemas Zod)
 │   └── mcp-server.ts           Servidor MCP + transporte stdio
 ├── dns/
 │   └── index.ts                6 funciones — lookup, reverse, email, cadena SPF, SRV, wildcard
@@ -580,7 +580,7 @@ src/
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | Seguridad en la nube (AWS/Azure/GCP) | 38 herramientas, 60+ verificaciones |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | Postura de seguridad de GitHub | 39 herramientas, 45 verificaciones |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | Inteligencia de vulnerabilidades | 23 herramientas, 5 fuentes |
-| **osint-mcp-server** | **OSINT y reconocimiento** | **37 herramientas, 12 fuentes** |
+| **osint-mcp-server** | **OSINT y reconocimiento** | **42 herramientas, 12 fuentes** |
 
 ---
 

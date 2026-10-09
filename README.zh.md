@@ -47,7 +47,7 @@
   <a href="#有何不同">有何不同</a> &bull;
   <a href="#快速开始">快速开始</a> &bull;
   <a href="#ai-能做什么">AI 能做什么</a> &bull;
-  <a href="#工具参考37-个工具">工具 (37)</a> &bull;
+  <a href="#工具参考42-个工具">工具 (42)</a> &bull;
   <a href="#数据源12-个">数据源</a> &bull;
   <a href="#架构">架构</a>
 </p>
@@ -57,8 +57,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Tools">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Sources">
+  <img src="https://img.shields.io/badge/tools-42-06b6d4" alt="42 Tools">
+  <img src="https://img.shields.io/badge/sources-14-0ea5e9" alt="14 Sources">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
@@ -83,7 +83,7 @@
   总计：每个目标 45 分钟以上，大部分时间在切换上下文
 ```
 
-**osint-mcp-server** 通过 [Model Context Protocol](https://modelcontextprotocol.io) 为您的 AI 智能体提供跨 12 个数据源的 37 个工具。智能体并行查询所有数据源、关联数据、识别风险，并在单次对话中呈现统一的情报全景。
+**osint-mcp-server** 通过 [Model Context Protocol](https://modelcontextprotocol.io) 为您的 AI 智能体提供跨 12 个数据源的 42 个工具。智能体并行查询所有数据源、关联数据、识别风险，并在单次对话中呈现统一的情报全景。
 
 ```
 使用 osint-mcp-server：
@@ -342,7 +342,7 @@ JSON 配置格式相同。将命令指向 `npx osint-mcp-server` 或您的本地
 
 ---
 
-## 工具参考（37 个工具）
+## 工具参考（42 个工具）
 
 <details open>
 <summary><b>DNS（6 个）&mdash; 无需 API 密钥</b></summary>
@@ -514,7 +514,7 @@ src/
 ├── types/
 │   └── index.ts                ToolDef, ToolContext, ToolResult
 ├── protocol/
-│   ├── tools.ts                37 tool definitions (Zod schemas)
+│   ├── tools.ts                42 tool definitions (Zod schemas)
 │   └── mcp-server.ts           MCP server + stdio transport
 ├── dns/
 │   └── index.ts                6 functions — lookup, reverse, email, SPF chain, SRV, wildcard
@@ -581,7 +581,7 @@ src/
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | 云安全（AWS/Azure/GCP） | 38 个工具，60+ 项检查 |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | GitHub 安全态势 | 39 个工具，45 项检查 |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | 漏洞情报 | 23 个工具，5 个数据源 |
-| **osint-mcp-server** | **开源情报与侦察** | **37 个工具，12 个数据源** |
+| **osint-mcp-server** | **开源情报与侦察** | **42 个工具，12 个数据源** |
 
 ---
 

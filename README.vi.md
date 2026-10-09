@@ -47,7 +47,7 @@
   <a href="#điểm-khác-biệt">Điểm khác biệt</a> &bull;
   <a href="#bắt-đầu-nhanh">Bắt đầu nhanh</a> &bull;
   <a href="#ai-có-thể-làm-gì">AI có thể làm gì</a> &bull;
-  <a href="#tài-liệu-công-cụ-37-công-cụ">Công cụ (37)</a> &bull;
+  <a href="#tài-liệu-công-cụ-42-công-cụ">Công cụ (42)</a> &bull;
   <a href="#nguồn-dữ-liệu-12">Nguồn dữ liệu</a> &bull;
   <a href="#kiến-trúc">Kiến trúc</a>
 </p>
@@ -57,8 +57,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Tools">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Sources">
+  <img src="https://img.shields.io/badge/tools-42-06b6d4" alt="42 Tools">
+  <img src="https://img.shields.io/badge/sources-14-0ea5e9" alt="14 Sources">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
@@ -83,7 +83,7 @@ Quy trình OSINT truyền thống:
   Tổng: 45+ phút mỗi mục tiêu, phần lớn là chuyển đổi ngữ cảnh
 ```
 
-**osint-mcp-server** cung cấp cho AI agent của bạn 37 công cụ trên 12 nguồn dữ liệu qua [Model Context Protocol](https://modelcontextprotocol.io). Agent truy vấn tất cả các nguồn song song, tương quan dữ liệu, xác định rủi ro và trình bày bức tranh tình báo thống nhất &mdash; trong một cuộc trò chuyện duy nhất.
+**osint-mcp-server** cung cấp cho AI agent của bạn 42 công cụ trên 12 nguồn dữ liệu qua [Model Context Protocol](https://modelcontextprotocol.io). Agent truy vấn tất cả các nguồn song song, tương quan dữ liệu, xác định rủi ro và trình bày bức tranh tình báo thống nhất &mdash; trong một cuộc trò chuyện duy nhất.
 
 ```
 Với osint-mcp-server:
@@ -341,7 +341,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## Tài liệu công cụ (37 công cụ)
+## Tài liệu công cụ (42 công cụ)
 
 <details open>
 <summary><b>DNS (6) &mdash; Không cần khóa API</b></summary>
@@ -486,7 +486,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## Nguồn dữ liệu (12)
+## Nguồn dữ liệu (14)
 
 | Nguồn | Xác thực | Giới hạn tốc độ | Cung cấp gì |
 |--------|------|-----------|-----------------|
@@ -513,7 +513,7 @@ src/
 ├── types/
 │   └── index.ts                ToolDef, ToolContext, ToolResult
 ├── protocol/
-│   ├── tools.ts                37 định nghĩa công cụ (schema Zod)
+│   ├── tools.ts                42 định nghĩa công cụ (schema Zod)
 │   └── mcp-server.ts           Máy chủ MCP + stdio transport
 ├── dns/
 │   └── index.ts                6 hàm — lookup, reverse, email, chuỗi SPF, SRV, wildcard
@@ -580,7 +580,7 @@ src/
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | Bảo mật đám mây (AWS/Azure/GCP) | 38 công cụ, 60+ kiểm tra |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | Tình trạng bảo mật GitHub | 39 công cụ, 45 kiểm tra |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | Thông tin tình báo lỗ hổng | 23 công cụ, 5 nguồn |
-| **osint-mcp-server** | **OSINT & trinh sát** | **37 công cụ, 12 nguồn** |
+| **osint-mcp-server** | **OSINT & trinh sát** | **42 công cụ, 12 nguồn** |
 
 ---
 

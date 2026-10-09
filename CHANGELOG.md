@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- **Vulnerability & weakness intelligence** — 5 new tools (37 → 42), 2 new free sources (12 → 14):
+  - `internetdb_host` — free passive per-IP snapshot (ports, CPEs, tags, known CVEs) via Shodan InternetDB, no API key.
+  - `cve_lookup` / `cve_search` — Shodan CVEDB enrichment: CVSS v2/v3/v4, EPSS score + ranking, KEV, ransomware association, proposed mitigation, and CPE→CVE search (filter by KEV, sort by EPSS, date range). No API key.
+  - `shodan_count` — host counts with facet breakdowns (`vuln,port,tag,org`) without spending query credits.
+  - `osint_host_exposure` — meta-tool that fans out to InternetDB + Shodan + Censys (whichever keys are set), enriches every CVE through CVEDB, ranks them KEV → EPSS → CVSS, and flags weaknesses (risky exposed services, end-of-life software, deprecated TLS, expired/self-signed certs, threat/compromise tags). Degrades gracefully with no keys.
+
+### Changed
+- **`shodan_host`** now returns per-CVE vulnerability details (CVSS, EPSS, KEV, `verified` flag, affected ports) with a severity summary, plus service-level TLS/HTTP metadata, tags and CPEs; added an optional `history` parameter.
+- **`shodan_search`** results now include `vulns`, `tags`, `version` and `cpe`; facets are returned as `{value, count}` lists.
+- **Censys** host/service normalization now surfaces `vulns` (CVSS/EPSS/KEV/CWE), `threats`, `exposures`, `misconfigs`, end-of-life software, service labels and TLS metadata, with a host-level vulnerability summary (requires the relevant Censys plan).
+
 ### Changed
 - **Censys migrated to Platform API v3** (`api.platform.censys.io`). The legacy Search API v2 (`search.censys.io`) is being retired.
   - Auth: `CENSYS_API_TOKEN` (Personal Access Token, Bearer) + optional `CENSYS_ORG_ID` (required on Starter/Search/Core plans).

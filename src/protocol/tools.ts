@@ -8,7 +8,9 @@ import { requireApiKey } from "../utils/require-key.js";
 import { dnsLookup, dnsReverse, dnsEmailSecurity, dnsSpfChain, dnsSrvDiscover, dnsWildcardCheck } from "../dns/index.js";
 import { whoisDomain, whoisIp } from "../whois/index.js";
 import { crtshSearch } from "../crtsh/index.js";
-import { shodanHost, shodanSearch, shodanDnsResolve, shodanExploits } from "../shodan/index.js";
+import { shodanHost, shodanSearch, shodanDnsResolve, shodanExploits, shodanCount } from "../shodan/index.js";
+import { internetdbHost } from "../internetdb/index.js";
+import { cveLookup, cveSearch } from "../cvedb/index.js";
 import { vtDomain, vtIp, vtSubdomains, vtUrl } from "../virustotal/index.js";
 import { stSubdomains, stDnsHistory, stWhois } from "../securitytrails/index.js";
 import { censysHosts, censysHostDetails, censysCertificates } from "../censys/index.js";
@@ -19,6 +21,7 @@ import { hackertargetHostsearch, hackertargetReverseIp, hackertargetAslookup } f
 import { m365Tenant, m365UserRealm } from "../m365/index.js";
 import { checkSources } from "../meta/sources.js";
 import { domainRecon } from "../meta/recon.js";
+import { hostExposure } from "../meta/exposure.js";
 
 // ═══════════════════════════════════════════════════════════════
 // DNS (6 tools)
@@ -121,18 +124,34 @@ const crtshSearchTool: ToolDef = {
 };
 
 // ═══════════════════════════════════════════════════════════════
-// Shodan (4 tools) — requires SHODAN_API_KEY
+// Shodan (5 tools) — requires SHODAN_API_KEY
 // ═══════════════════════════════════════════════════════════════
 
 const shodanHostTool: ToolDef = {
   name: "shodan_host",
-  description: "Get Shodan host details for an IP: open ports, services, banners, vulns, OS, ASN, geolocation. Requires SHODAN_API_KEY.",
+  description:
+    "Get Shodan host details for an IP: open ports, services, TLS/HTTP metadata, tags, and per-CVE vulnerabilities (CVSS, EPSS, KEV, verified flag) with a severity summary. Requires SHODAN_API_KEY.",
   schema: {
     ip: z.string().describe("IP address to look up"),
+    history: z.boolean().optional().describe("Include historical banners (shows how long a service/version has been exposed)"),
   },
   execute: async (args, ctx) => {
     const key = requireApiKey(ctx.config.shodanApiKey, "Shodan", "SHODAN_API_KEY");
-    return json(await shodanHost(args.ip as string, key));
+    return json(await shodanHost(args.ip as string, key, args.history as boolean | undefined));
+  },
+};
+
+const shodanCountTool: ToolDef = {
+  name: "shodan_count",
+  description:
+    "Count Shodan hosts matching a query, with facet breakdowns (e.g. facets 'vuln,port,tag,org'). Does not consume query credits — ideal for exposure statistics across an org/ASN/country. Requires SHODAN_API_KEY.",
+  schema: {
+    query: z.string().describe("Shodan search query (e.g. 'org:\"Example Inc\"' or 'net:1.2.3.0/24')"),
+    facets: z.string().optional().describe("Comma-separated facets to aggregate (e.g. 'vuln,port,tag,product')"),
+  },
+  execute: async (args, ctx) => {
+    const key = requireApiKey(ctx.config.shodanApiKey, "Shodan", "SHODAN_API_KEY");
+    return json(await shodanCount(args.query as string, key, args.facets as string | undefined));
   },
 };
 
@@ -452,7 +471,62 @@ const m365UserRealmTool: ToolDef = {
 };
 
 // ═══════════════════════════════════════════════════════════════
-// Meta (2 tools)
+// Shodan InternetDB (1 tool) — free, no key, weekly data
+// ═══════════════════════════════════════════════════════════════
+
+const internetdbHostTool: ToolDef = {
+  name: "internetdb_host",
+  description:
+    "Fast passive vulnerability snapshot for an IP via Shodan InternetDB: open ports, CPEs, hostnames, tags, and known CVE IDs. Free, no API key (data refreshed weekly, non-commercial use).",
+  schema: {
+    ip: z.string().describe("IP address to look up"),
+  },
+  execute: async (args) => json(await internetdbHost(args.ip as string)),
+};
+
+// ═══════════════════════════════════════════════════════════════
+// Shodan CVEDB (2 tools) — free, no key
+// ═══════════════════════════════════════════════════════════════
+
+const cveLookupTool: ToolDef = {
+  name: "cve_lookup",
+  description:
+    "Look up a CVE in Shodan's CVEDB: CVSS v2/v3/v4, EPSS score and ranking, KEV status, ransomware association, proposed mitigation, affected CPEs, references. Free, no API key.",
+  schema: {
+    cve: z.string().describe("CVE ID (e.g. CVE-2023-44487)"),
+  },
+  execute: async (args) => json(await cveLookup(args.cve as string)),
+};
+
+const cveSearchTool: ToolDef = {
+  name: "cve_search",
+  description:
+    "Search Shodan's CVEDB for vulnerabilities by affected software (CPE 2.3 or product name). Filter by KEV, sort by EPSS, or restrict to a date range. Useful for mapping a detected product/version to its CVEs. Free, no API key.",
+  schema: {
+    cpe23: z.string().optional().describe("CPE 2.3 string with a version, e.g. 'cpe:2.3:a:apache:http_server:2.4.7' (a cpe:/ 2.2 URI is accepted and converted)"),
+    product: z.string().optional().describe("Product name, e.g. 'nginx' (alternative to cpe23)"),
+    kev_only: z.boolean().optional().describe("Only return CVEs in the CISA KEV catalog"),
+    sort_by_epss: z.boolean().optional().describe("Sort results by EPSS (highest exploit probability first)"),
+    start_date: z.string().optional().describe("Published on/after this date (YYYY-MM-DD)"),
+    end_date: z.string().optional().describe("Published on/before this date (YYYY-MM-DD)"),
+    limit: z.number().optional().describe("Maximum CVEs to return (1-1000, default 50)"),
+  },
+  execute: async (args) =>
+    json(
+      await cveSearch({
+        cpe23: args.cpe23 as string | undefined,
+        product: args.product as string | undefined,
+        kevOnly: args.kev_only as boolean | undefined,
+        sortByEpss: args.sort_by_epss as boolean | undefined,
+        startDate: args.start_date as string | undefined,
+        endDate: args.end_date as string | undefined,
+        limit: args.limit as number | undefined,
+      }),
+    ),
+};
+
+// ═══════════════════════════════════════════════════════════════
+// Meta (3 tools)
 // ═══════════════════════════════════════════════════════════════
 
 const osintListSourcesTool: ToolDef = {
@@ -469,6 +543,16 @@ const osintDomainReconTool: ToolDef = {
     domain: z.string().describe("Domain to perform recon on"),
   },
   execute: async (args) => json(await domainRecon(args.domain as string)),
+};
+
+const osintHostExposureTool: ToolDef = {
+  name: "osint_host_exposure",
+  description:
+    "Passive vulnerability & weakness overview for a single IP. Combines Shodan InternetDB (free) with Shodan and Censys host data when their keys are set, enriches every CVE via CVEDB (CVSS/EPSS/KEV), and flags weaknesses: risky exposed services, end-of-life software, deprecated TLS, expired/self-signed certs, and threat/compromise tags. CVEs are ranked KEV → EPSS → CVSS. No key required (richer with SHODAN_API_KEY / CENSYS_API_TOKEN).",
+  schema: {
+    ip: z.string().describe("IP address to assess"),
+  },
+  execute: async (args, ctx) => json(await hostExposure(args.ip as string, ctx)),
 };
 
 // ═══════════════════════════════════════════════════════════════
@@ -488,9 +572,10 @@ export const allTools: ToolDef[] = [
   whoisIpTool,
   // crt.sh (1)
   crtshSearchTool,
-  // Shodan (4)
+  // Shodan (5)
   shodanHostTool,
   shodanSearchTool,
+  shodanCountTool,
   shodanDnsResolveTool,
   shodanExploitsTool,
   // VirusTotal (4)
@@ -523,7 +608,13 @@ export const allTools: ToolDef[] = [
   // M365 (2)
   m365TenantTool,
   m365UserRealmTool,
-  // Meta (2)
+  // Shodan InternetDB (1)
+  internetdbHostTool,
+  // Shodan CVEDB (2)
+  cveLookupTool,
+  cveSearchTool,
+  // Meta (3)
   osintListSourcesTool,
   osintDomainReconTool,
+  osintHostExposureTool,
 ];

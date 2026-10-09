@@ -47,8 +47,8 @@
   <a href="#how-its-different">How It's Different</a> &bull;
   <a href="#quick-start">Quick Start</a> &bull;
   <a href="#what-the-ai-can-do">What The AI Can Do</a> &bull;
-  <a href="#tools-reference-37-tools">Tools (37)</a> &bull;
-  <a href="#data-sources-12">Data Sources</a> &bull;
+  <a href="#tools-reference-42-tools">Tools (42)</a> &bull;
+  <a href="#data-sources-14">Data Sources</a> &bull;
   <a href="#architecture">Architecture</a> &bull;
   <a href="CHANGELOG.md">Changelog</a> &bull;
   <a href="CONTRIBUTING.md">Contributing</a>
@@ -59,8 +59,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Tools">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Sources">
+  <img src="https://img.shields.io/badge/tools-42-06b6d4" alt="42 Tools">
+  <img src="https://img.shields.io/badge/sources-14-0ea5e9" alt="14 Sources">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
@@ -89,7 +89,7 @@ Traditional OSINT workflow:
   Total: 45+ minutes per target, most of it switching contexts
 ```
 
-**osint-mcp-server** gives your AI agent 37 tools across 12 data sources via the [Model Context Protocol](https://modelcontextprotocol.io). The agent queries all sources in parallel, correlates data, identifies risks, and presents a unified intelligence picture &mdash; in a single conversation.
+**osint-mcp-server** gives your AI agent 42 tools across 14 data sources via the [Model Context Protocol](https://modelcontextprotocol.io). The agent queries all sources in parallel, correlates data, identifies risks, and presents a unified intelligence picture &mdash; in a single conversation.
 
 ```
 With osint-mcp-server:
@@ -131,7 +131,7 @@ Existing OSINT tools give you raw data one source at a time. osint-mcp-server gi
 <tr>
 <td><b>Data sources</b></td>
 <td>One platform at a time</td>
-<td>12 sources queried in parallel</td>
+<td>14 sources queried in parallel</td>
 </tr>
 <tr>
 <td><b>Subdomain enum</b></td>
@@ -347,7 +347,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## Tools Reference (37 tools)
+## Tools Reference (42 tools)
 
 <details open>
 <summary><b>DNS (6) &mdash; No API key</b></summary>
@@ -383,14 +383,34 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 </details>
 
 <details>
-<summary><b>Shodan (4) &mdash; Requires SHODAN_API_KEY</b></summary>
+<summary><b>Shodan (5) &mdash; Requires SHODAN_API_KEY</b></summary>
 
 | Tool | Description |
 |------|-------------|
-| `shodan_host` | IP details: open ports, services, banners, vulnerabilities, OS, ASN |
+| `shodan_host` | IP details: ports, services, TLS/HTTP metadata, tags, per-CVE vulns (CVSS/EPSS/KEV/verified) + severity summary |
 | `shodan_search` | Search Shodan query language (e.g. `apache port:443 country:US`) |
+| `shodan_count` | Count hosts + facet breakdowns (`vuln,port,tag,org`) without spending query credits |
 | `shodan_dns_resolve` | Bulk hostname-to-IP resolution via Shodan |
 | `shodan_exploits` | Search public exploit database (PoC, Metasploit modules) |
+
+</details>
+
+<details>
+<summary><b>Shodan InternetDB (1) &mdash; No API key</b></summary>
+
+| Tool | Description |
+|------|-------------|
+| `internetdb_host` | Fast passive IP snapshot: ports, CPEs, hostnames, tags, known CVE IDs (free, weekly data) |
+
+</details>
+
+<details>
+<summary><b>Shodan CVEDB (2) &mdash; No API key</b></summary>
+
+| Tool | Description |
+|------|-------------|
+| `cve_lookup` | CVE details: CVSS v2/v3/v4, EPSS score + ranking, KEV, ransomware, mitigation, CPEs |
+| `cve_search` | Find CVEs by CPE 2.3 / product; filter by KEV, sort by EPSS, date range |
 
 </details>
 
@@ -481,12 +501,13 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 </details>
 
 <details>
-<summary><b>Meta (2) &mdash; No API key</b></summary>
+<summary><b>Meta (3) &mdash; No API key</b></summary>
 
 | Tool | Description |
 |------|-------------|
 | `osint_list_sources` | List all OSINT sources, API key status, and tool counts |
 | `osint_domain_recon` | Quick recon combining all free sources (DNS + WHOIS + crt.sh + HackerTarget + email security) |
+| `osint_host_exposure` | Passive vuln/weakness overview for an IP: InternetDB + Shodan + Censys, CVEs enriched via CVEDB and ranked KEV→EPSS→CVSS, plus exposed-service / EOL / weak-TLS / threat flags |
 
 </details>
 
@@ -494,7 +515,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 
 ## GitHub Actions
 
-Use any of the 37 tools directly in your CI/CD pipeline:
+Use any of the 42 tools directly in your CI/CD pipeline:
 
 ```yaml
 # .github/workflows/security.yml
@@ -555,7 +576,7 @@ SHODAN_API_KEY=your-key npx osint-mcp-server --tool shodan_host '{"ip":"1.1.1.1"
 
 ---
 
-## Data Sources (12)
+## Data Sources (14)
 
 | Source | Auth | Rate Limit | What it provides |
 |--------|------|-----------|-----------------|
@@ -567,6 +588,8 @@ SHODAN_API_KEY=your-key npx osint-mcp-server --tool shodan_host '{"ip":"1.1.1.1"
 | [HackerTarget](https://hackertarget.com/) | None | 2 req/s | Host search, reverse IP, ASN lookup (50/day free) |
 | [Wayback Machine](https://web.archive.org/) | None | 1 req/s | Archived URLs, snapshot history, historical content |
 | [Microsoft 365](https://login.microsoftonline.com/) | None | None | Tenant discovery, federation detection, auth type |
+| [Shodan InternetDB](https://internetdb.shodan.io/) | None | 2 req/s | Passive per-IP ports, CPEs, tags, known CVEs (weekly data) |
+| [Shodan CVEDB](https://cvedb.shodan.io/) | None | 4 req/s | CVE enrichment: CVSS, EPSS, KEV, CPE→CVE mapping |
 | [Shodan](https://www.shodan.io/) | `SHODAN_API_KEY` | 1 req/s | Internet-wide port/service/banner scanning |
 | [VirusTotal](https://www.virustotal.com/) | `VT_API_KEY` | 4 req/min | Domain/IP/URL reputation, malware detection |
 | [SecurityTrails](https://securitytrails.com/) | `ST_API_KEY` | 1 req/s | DNS history, subdomain enumeration, enhanced WHOIS |
@@ -577,8 +600,8 @@ SHODAN_API_KEY=your-key npx osint-mcp-server --tool shodan_host '{"ip":"1.1.1.1"
 
 **Design decisions:**
 
-- **12 providers, 1 server** &mdash; Every OSINT source is an independent module. The agent picks which tools to use based on the query.
-- **21 free tools** &mdash; DNS, WHOIS, crt.sh, BGP, GeoIP, Wayback, HackerTarget, and M365 work without any API keys. Premium sources are additive.
+- **14 providers, 1 server** &mdash; Every OSINT source is an independent module. The agent picks which tools to use based on the query.
+- **25 free tools** &mdash; DNS, WHOIS, crt.sh, BGP, GeoIP, Wayback, HackerTarget, and M365 work without any API keys. Premium sources are additive.
 - **Parallel queries** &mdash; `osint_domain_recon` calls 8 sources via `Promise.allSettled`. If one source times out, the rest still return data.
 - **Per-provider rate limiters** &mdash; Each data source has its own `RateLimiter` instance calibrated to that API's limits. No shared bottleneck.
 - **TTL caching** &mdash; crt.sh (15min), BGP (30min), Shodan (5min), VirusTotal (10min) results are cached to avoid redundant API calls during multi-tool workflows.
@@ -607,7 +630,7 @@ SHODAN_API_KEY=your-key npx osint-mcp-server --tool shodan_host '{"ip":"1.1.1.1"
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | Cloud security (AWS/Azure/GCP) | 38 tools, 60+ checks |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | GitHub security posture | 39 tools, 45 checks |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | Vulnerability intelligence | 23 tools, 5 sources |
-| **osint-mcp-server** | **OSINT & reconnaissance** | **37 tools, 12 sources** |
+| **osint-mcp-server** | **OSINT & reconnaissance** | **42 tools, 14 sources** |
 
 ---
 

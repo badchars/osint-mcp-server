@@ -47,7 +47,7 @@
   <a href="#どこが違うのか">どこが違うのか</a> &bull;
   <a href="#クイックスタート">クイックスタート</a> &bull;
   <a href="#aiができること">AIができること</a> &bull;
-  <a href="#ツールリファレンス37ツール">ツール (37)</a> &bull;
+  <a href="#ツールリファレンス42ツール">ツール (42)</a> &bull;
   <a href="#データソース12">データソース</a> &bull;
   <a href="#アーキテクチャ">アーキテクチャ</a>
 </p>
@@ -57,8 +57,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Tools">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Sources">
+  <img src="https://img.shields.io/badge/tools-42-06b6d4" alt="42 Tools">
+  <img src="https://img.shields.io/badge/sources-14-0ea5e9" alt="14 Sources">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
@@ -83,7 +83,7 @@ OSINTの収集は、すべてのペネトレーションテスト、バグバウ
   合計: ターゲット1つあたり45分以上、その大部分はコンテキストの切り替え
 ```
 
-**osint-mcp-server**は、[Model Context Protocol](https://modelcontextprotocol.io)を介して、12のデータソースにわたる37のツールをAIエージェントに提供します。エージェントはすべてのソースを並行してクエリし、データを相関させ、リスクを特定し、統一されたインテリジェンスの全体像を提示します — 単一の会話の中で。
+**osint-mcp-server**は、[Model Context Protocol](https://modelcontextprotocol.io)を介して、12のデータソースにわたる42のツールをAIエージェントに提供します。エージェントはすべてのソースを並行してクエリし、データを相関させ、リスクを特定し、統一されたインテリジェンスの全体像を提示します — 単一の会話の中で。
 
 ```
 osint-mcp-serverを使用した場合:
@@ -342,7 +342,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## ツールリファレンス (37ツール)
+## ツールリファレンス (42ツール)
 
 <details open>
 <summary><b>DNS (6) — APIキー不要</b></summary>
@@ -487,7 +487,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## データソース (12)
+## データソース (14)
 
 | ソース | 認証 | レート制限 | 提供内容 |
 |--------|------|-----------|-----------------|
@@ -514,7 +514,7 @@ src/
 ├── types/
 │   └── index.ts                ToolDef、ToolContext、ToolResult
 ├── protocol/
-│   ├── tools.ts                37ツール定義 (Zodスキーマ)
+│   ├── tools.ts                42ツール定義 (Zodスキーマ)
 │   └── mcp-server.ts           MCPサーバー + stdioトランスポート
 ├── dns/
 │   └── index.ts                6つの関数 — lookup、reverse、email、SPFチェーン、SRV、wildcard
@@ -581,7 +581,7 @@ src/
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | クラウドセキュリティ (AWS/Azure/GCP) | 38ツール、60以上のチェック |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | GitHubセキュリティ態勢 | 39ツール、45チェック |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | 脆弱性インテリジェンス | 23ツール、5ソース |
-| **osint-mcp-server** | **OSINT & 偵察** | **37ツール、12ソース** |
+| **osint-mcp-server** | **OSINT & 偵察** | **42ツール、12ソース** |
 
 ---
 

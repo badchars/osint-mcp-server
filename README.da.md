@@ -47,7 +47,7 @@
   <a href="#hvordan-det-er-anderledes">Hvordan Det Er Anderledes</a> &bull;
   <a href="#hurtig-start">Hurtig Start</a> &bull;
   <a href="#hvad-ai-en-kan-gøre">Hvad AI'en Kan Gøre</a> &bull;
-  <a href="#værktøjsreference-37-værktøjer">Værktøjer (37)</a> &bull;
+  <a href="#værktøjsreference-42-værktøjer">Værktøjer (42)</a> &bull;
   <a href="#datakilder-12">Datakilder</a> &bull;
   <a href="#arkitektur">Arkitektur</a>
 </p>
@@ -57,8 +57,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Værktøjer">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Kilder">
+  <img src="https://img.shields.io/badge/tools-42-06b6d4" alt="42 Værktøjer">
+  <img src="https://img.shields.io/badge/sources-14-0ea5e9" alt="12 Kilder">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Gratis Værktøjer">
 </p>
 
@@ -83,7 +83,7 @@ Traditionel OSINT-arbejdsgang:
   Total: 45+ minutter pr. mål, det meste kontekstskift
 ```
 
-**osint-mcp-server** giver din AI-agent 37 værktøjer på tværs af 12 datakilder via [Model Context Protocol](https://modelcontextprotocol.io). Agenten forespørger alle kilder parallelt, korrelerer data, identificerer risici og præsenterer et samlet efterretningsbillede &mdash; i en enkelt samtale.
+**osint-mcp-server** giver din AI-agent 42 værktøjer på tværs af 12 datakilder via [Model Context Protocol](https://modelcontextprotocol.io). Agenten forespørger alle kilder parallelt, korrelerer data, identificerer risici og præsenterer et samlet efterretningsbillede &mdash; i en enkelt samtale.
 
 ```
 Med osint-mcp-server:
@@ -341,7 +341,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## Værktøjsreference (37 værktøjer)
+## Værktøjsreference (42 værktøjer)
 
 <details open>
 <summary><b>DNS (6) &mdash; Ingen API-nøgle</b></summary>
@@ -486,7 +486,7 @@ Agent: → wayback_urls {domain: "target.com", limit: 500}
 
 ---
 
-## Datakilder (12)
+## Datakilder (14)
 
 | Kilde | Auth | Hastighedsbegrænsning | Hvad den leverer |
 |--------|------|-----------|-----------------|
@@ -513,7 +513,7 @@ src/
 ├── types/
 │   └── index.ts                ToolDef, ToolContext, ToolResult
 ├── protocol/
-│   ├── tools.ts                37 værktøjsdefinitioner (Zod-skemaer)
+│   ├── tools.ts                42 værktøjsdefinitioner (Zod-skemaer)
 │   └── mcp-server.ts           MCP-server + stdio-transport
 ├── dns/
 │   └── index.ts                6 funktioner — opslag, reverse, e-mail, SPF-kæde, SRV, wildcard
@@ -580,7 +580,7 @@ src/
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | Cloud-sikkerhed (AWS/Azure/GCP) | 38 værktøjer, 60+ tjek |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | GitHub-sikkerhedsstilling | 39 værktøjer, 45 tjek |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | Sårbarhedsintelligens | 23 værktøjer, 5 kilder |
-| **osint-mcp-server** | **OSINT & rekognoscering** | **37 værktøjer, 12 kilder** |
+| **osint-mcp-server** | **OSINT & rekognoscering** | **42 værktøjer, 12 kilder** |
 
 ---
 

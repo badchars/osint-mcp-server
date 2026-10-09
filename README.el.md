@@ -47,7 +47,7 @@
   <a href="#πώς-είναι-διαφορετικό">Πώς Είναι Διαφορετικό</a> &bull;
   <a href="#γρήγορη-έναρξη">Γρήγορη Έναρξη</a> &bull;
   <a href="#τι-μπορεί-να-κάνει-η-ai">Τι Μπορεί Να Κάνει Η AI</a> &bull;
-  <a href="#αναφορά-εργαλείων-37-εργαλεία">Εργαλεία (37)</a> &bull;
+  <a href="#αναφορά-εργαλείων-42-εργαλεία">Εργαλεία (42)</a> &bull;
   <a href="#πηγές-δεδομένων-12">Πηγές Δεδομένων</a> &bull;
   <a href="#αρχιτεκτονική">Αρχιτεκτονική</a>
 </p>
@@ -57,8 +57,8 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/runtime-Bun-f472b6" alt="Bun">
   <img src="https://img.shields.io/badge/protocol-MCP-8b5cf6" alt="MCP">
-  <img src="https://img.shields.io/badge/tools-37-06b6d4" alt="37 Tools">
-  <img src="https://img.shields.io/badge/sources-12-0ea5e9" alt="12 Sources">
+  <img src="https://img.shields.io/badge/tools-42-06b6d4" alt="42 Tools">
+  <img src="https://img.shields.io/badge/sources-14-0ea5e9" alt="14 Sources">
   <img src="https://img.shields.io/badge/free%20tools-21-22c55e" alt="21 Free Tools">
 </p>
 
@@ -83,7 +83,7 @@
   Σύνολο: 45+ λεπτά ανά στόχο, το μεγαλύτερο μέρος εναλλαγή πλαισίων
 ```
 
-Το **osint-mcp-server** δίνει στον παράγοντα AI σας 37 εργαλεία σε 12 πηγές δεδομένων μέσω του [Model Context Protocol](https://modelcontextprotocol.io). Ο παράγοντας υποβάλλει ερωτήματα σε όλες τις πηγές παράλληλα, συσχετίζει δεδομένα, εντοπίζει κινδύνους και παρουσιάζει μια ενοποιημένη εικόνα πληροφοριών &mdash; σε μια μόνο συζήτηση.
+Το **osint-mcp-server** δίνει στον παράγοντα AI σας 42 εργαλεία σε 12 πηγές δεδομένων μέσω του [Model Context Protocol](https://modelcontextprotocol.io). Ο παράγοντας υποβάλλει ερωτήματα σε όλες τις πηγές παράλληλα, συσχετίζει δεδομένα, εντοπίζει κινδύνους και παρουσιάζει μια ενοποιημένη εικόνα πληροφοριών &mdash; σε μια μόνο συζήτηση.
 
 ```
 Με το osint-mcp-server:
@@ -341,7 +341,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 
 ---
 
-## Αναφορά Εργαλείων (37 εργαλεία)
+## Αναφορά Εργαλείων (42 εργαλεία)
 
 <details open>
 <summary><b>DNS (6) &mdash; Χωρίς κλειδί API</b></summary>
@@ -486,7 +486,7 @@ claude mcp add osint-mcp-server -- bun run /path/to/osint-mcp-server/src/index.t
 
 ---
 
-## Πηγές Δεδομένων (12)
+## Πηγές Δεδομένων (14)
 
 | Πηγή | Εξουσιοδότηση | Όριο Ρυθμού | Τι παρέχει |
 |--------|------|-----------|-----------------|
@@ -513,7 +513,7 @@ src/
 ├── types/
 │   └── index.ts                ToolDef, ToolContext, ToolResult
 ├── protocol/
-│   ├── tools.ts                37 ορισμοί εργαλείων (Zod schemas)
+│   ├── tools.ts                42 ορισμοί εργαλείων (Zod schemas)
 │   └── mcp-server.ts           Διακομιστής MCP + stdio transport
 ├── dns/
 │   └── index.ts                6 συναρτήσεις — lookup, reverse, email, SPF chain, SRV, wildcard
@@ -580,7 +580,7 @@ src/
 | [cloud-audit-mcp](https://github.com/badchars/cloud-audit-mcp) | Ασφάλεια cloud (AWS/Azure/GCP) | 38 εργαλεία, 60+ έλεγχοι |
 | [github-security-mcp](https://github.com/badchars/github-security-mcp) | Στάση ασφάλειας GitHub | 39 εργαλεία, 45 έλεγχοι |
 | [cve-mcp](https://github.com/badchars/cve-mcp) | Πληροφορίες ευπαθειών | 23 εργαλεία, 5 πηγές |
-| **osint-mcp-server** | **OSINT & αναγνώριση** | **37 εργαλεία, 12 πηγές** |
+| **osint-mcp-server** | **OSINT & αναγνώριση** | **42 εργαλεία, 12 πηγές** |
 
 ---
 
